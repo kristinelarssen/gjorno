@@ -1,14 +1,18 @@
-import * as React from 'react'
-import "../../styles/activity.css"
+import React from "react";
+import "../../styles/activity.css";
 
-const Activity = () => {
-    return (
-        <div className="box">
-            <h3>Tittel</h3>
-            <p>Beskrivelse kommer her</p>
-            <p>Dato</p>
-        </div>
-    )
+interface Props {
+  title?: string;
 }
 
-export default Activity
+const Activity = ({ title }: Props) => {
+  return (
+    <div className="box">
+      <h3>{title ? title : "Tittel"}</h3>
+      <p>Beskrivelse kommer her</p>
+      <p>Dato</p>
+    </div>
+  );
+};
+
+export default Activity;
