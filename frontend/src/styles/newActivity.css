@@ -1,0 +1,13 @@
+.popUp{
+    width: 40%;
+    height: 200px;
+    border: 4px;
+    border-radius: 8px;
+    background-color: #DAD7CD;
+    border-color: #344E41;
+    padding: 20px;
+}
+
+.description{
+    height: 80px;
+}
