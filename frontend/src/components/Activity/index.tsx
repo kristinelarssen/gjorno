@@ -1,16 +1,20 @@
 import React from "react";
+import IActivity from "../../interfaces/Activity";
 import "../../styles/activity.css";
 
-interface Props {
-  title?: string;
-}
-
-const Activity = ({ title }: Props) => {
+const Activity: React.FC<IActivity> = ({
+  id,
+  title,
+  created,
+  description,
+  date,
+}) => {
   return (
-    <div className="box">
+    <div key={id} className="box">
       <h3>{title ? title : "Tittel"}</h3>
-      <p>Beskrivelse kommer her</p>
-      <p>Dato</p>
+      <p>Opprettet: {created}</p>
+      <p>Beskrivelse: {description}</p>
+      <p>Dato og tidspunkt: {date}</p>
     </div>
   );
 };

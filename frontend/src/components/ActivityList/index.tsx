@@ -1,26 +1,35 @@
-import axios from "axios";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import axios from "../../axios";
+import IActivity from "../../interfaces/Activity";
 import Activity from "../Activity";
 
-const ActivityList = () => {
-  const [activities, setActivities] = useState([]);
+const ActivityList: React.FC = () => {
+  const [activities, setActivities] = useState<IActivity[]>([]);
 
-  const getAllActivities = () => {
-    axios
-      .get(`http://localhost:8000/activities/`)
-      .then((response: any) => {
-        const activities = response.data;
-        setActivities(activities);
-        console.log(activities);
-      })
-      .catch((error: any) => console.error(`Error: ${error}`));
-  };
+  useEffect(() => {
+    async function fetchData() {
+      const request = await axios.get("activities/");
+      setActivities(request.data);
+      return;
+    }
+    fetchData();
+  }, [activities]);
 
   return (
     <div>
       {activities &&
         activities.length > 0 &&
-        activities.map((item) => <Activity title={item.title} />)}
+        activities.map((item) => (
+          <Activity
+            key={item.id}
+            title={item.title}
+            created={item.created}
+            description={item.description}
+            date={item.date}
+          />
+        ))}
     </div>
   );
 };
+
+export default ActivityList;
