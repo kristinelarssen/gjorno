@@ -1,7 +1,7 @@
 export default interface IActivity {
   id?: number;
   title: string;
-  created: Date;
+  created: string;
   description: string;
-  date: Date;
+  date: string;
 }
