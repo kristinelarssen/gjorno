@@ -5,6 +5,8 @@ from . import views
 # Create a router and register our viewsets with it.
 router = DefaultRouter()
 router.register(r"activities", views.ActivityViewSet)
+router.register(r'userprofiles', views.UserProfileViewSet)
 
 # The API URLs are now determined automatically by the router.
-urlpatterns = [path("", include(router.urls))]
+urlpatterns = [path("", include(router.urls)),
+path("admin/", admin.site.urls)]
