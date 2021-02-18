@@ -2,11 +2,14 @@ import { useEffect, useState } from "react";
 import axios from "../../axios";
 import IActivity from "../../interfaces/activity";
 import Activity from "../Activity";
+import moment from "moment";
+import "moment/locale/nb";
 
 const ActivityList: React.FC = () => {
   const [activities, setActivities] = useState<IActivity[]>([]);
 
   useEffect(() => {
+    moment.locale("nb");
     async function fetchData() {
       const request = await axios.get("activities/");
       setActivities(request.data);
@@ -23,9 +26,9 @@ const ActivityList: React.FC = () => {
           <Activity
             key={item.id}
             title={item.title}
-            created={item.created}
+            created={moment(item.created).format("Do MMMM YYYY, H:MM:SS")}
             description={item.description}
-            date={item.date}
+            date={moment(item.date).format("Do MMMM YYYY, H:MM:SS")}
           />
         ))}
     </div>
