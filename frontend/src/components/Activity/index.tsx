@@ -1,5 +1,5 @@
 import React from "react";
-import IActivity from "../../interfaces/Activity";
+import IActivity from "../../interfaces/activity";
 import "../../styles/activity.css";
 
 const Activity: React.FC<IActivity> = ({
@@ -11,7 +11,7 @@ const Activity: React.FC<IActivity> = ({
 }) => {
   return (
     <div key={id} className="box">
-      <h3>{title ? title : "Tittel"}</h3>
+      <h3>{title}</h3>
       <p>Opprettet: {created}</p>
       <p>Beskrivelse: {description}</p>
       <p>Dato og tidspunkt: {date}</p>

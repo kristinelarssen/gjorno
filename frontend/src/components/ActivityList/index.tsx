@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "../../axios";
-import IActivity from "../../interfaces/Activity";
+import IActivity from "../../interfaces/activity";
 import Activity from "../Activity";
 
 const ActivityList: React.FC = () => {
@@ -13,7 +13,7 @@ const ActivityList: React.FC = () => {
       return;
     }
     fetchData();
-  }, [activities]);
+  }, []);
 
   return (
     <div>
