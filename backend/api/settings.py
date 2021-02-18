@@ -122,3 +122,7 @@ DATETIME_FORMAT = "%d.%m.%Y %H:%m"
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = "/static/"
+
+
+#Gir custome user tilgang til feltene til den innebygde modellen User
+#USER_DETAILS_SERIALIZER = UserProfileSerializer

@@ -7,14 +7,12 @@ class Activity(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     description = models.TextField(default="")
     date = models.DateTimeField()
-    #owner = models.ForeignKey("UserProfile", related_name='activities', on_delete=models.CASCADE)
+    owner = models.ForeignKey("UserProfile", related_name='activities', on_delete=models.CASCADE, blank=True,null=True)
 
 class UserProfile(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, default=None, null=True, on_delete=models.CASCADE)
     age = models.IntegerField()
 
-    def __str__(self):
-        return self.user.username
     """   
     @receiver(post_save, sender=User)
     def create_userprofile(sender,instance,created,**kwargs):
