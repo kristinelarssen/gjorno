@@ -1,3 +1,5 @@
+
+import ActivityList from "./components/ActivityList";
 import React, { Component } from 'react';
 import { useState } from 'react';
 import { useEffect } from 'react';
@@ -19,11 +21,8 @@ function App() {
         <Navbar />  
         <button id = "btnNewAct" onClick={() => {setPopup(!popup)}}>+</button>    
       </header>
-      <div id = "activities">
-        <Activity />
-        <Activity />
-        <Activity />
-        <Activity />
+      <div id="activities">
+        <ActivityList />
       </div>
       <div>
         {popup?<NewActivity popup={() => setPopup(!popup)}></NewActivity>: null}
@@ -31,6 +30,7 @@ function App() {
     </div>
   );
 }
+
 
 const navigation = {
   brand: { name: "Navbar", to: "/"},
@@ -42,5 +42,6 @@ const navigation = {
 export const setPopup = () =>{
 
 }
+
 
 export default App;
