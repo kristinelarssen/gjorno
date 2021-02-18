@@ -8,15 +8,16 @@ import NewActivity from './components/NewActivity';
 //import { render } from '@testing-library/react';
 
 
-
 function App() {
+
+  const[popup, setPopup] = useState(false);
 
   
   return (
     <div className="App">
       <header>
         <Navbar />  
-        <button id = "btnNewAct" onClick={togglePopup}>+</button>    
+        <button id = "btnNewAct" onClick={() => {setPopup(!popup)}}>+</button>    
       </header>
       <div id = "activities">
         <Activity />
@@ -25,7 +26,7 @@ function App() {
         <Activity />
       </div>
       <div>
-        
+        {popup?<NewActivity popup={() => setPopup(!popup)}></NewActivity>: null}
       </div>
     </div>
   );
@@ -37,11 +38,9 @@ const navigation = {
     //{name: "???", to: "URL"}
   ]
 }
-function togglePopup(){
-  return (
-    <NewActivity isVisible = {true} ></NewActivity>
-  )
-}
 
+export const setPopup = () =>{
+
+}
 
 export default App;
