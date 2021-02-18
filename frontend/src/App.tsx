@@ -5,7 +5,17 @@ import './App.css';
 import Navbar from './components/Navbar';
 import Activity from './components/Activity';
 //import { render } from '@testing-library/react';
+import { Login } from "./components/Login/index";
 
+function App() {
+  return (
+    <div className="App">
+      <Login></Login>
+    </div>
+  )
+}
+
+/*
 function App() {
   return (
     <div className="App">
@@ -28,6 +38,7 @@ const navigation = {
     //{name: "???", to: "URL"}
   ]
 }
-
+*/
 
 export default App;
+
