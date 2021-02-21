@@ -1,5 +1,7 @@
 import React from "react";
 import loginImage from "./login-image.png";
+import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
+import Home from "../../views/home";
 
 function Signup() {
 
@@ -26,7 +28,15 @@ function Signup() {
             </div>
         </div>
         <div className="footer">
-            <button type="button" className="btn">Registrer Deg!</button>
+        <Router>
+            <Link to={"home"}>
+                    <button type="button" className="btn">Registrer Deg</button>
+            </Link>
+            <Switch>
+                <Route exact path="/home" component={Home}> 
+                </Route>
+            </Switch>
+        </Router>
         </div>
     </div>
     );

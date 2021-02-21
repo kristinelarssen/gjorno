@@ -1,6 +1,9 @@
 import React from "react";
 import loginImage from "./login-image.png";
+import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
 import "../../styles/login.css"
+import Home from "../../views/home";
+
 
 function Login() {
 
@@ -23,7 +26,16 @@ function Login() {
             </div>
         </div>
         <div className="footer">
-            <button type="button" className="btn">Logg Inn</button>
+            <Router>
+                <Link to={"home"}>
+                        <button type="button" className="btn">Logg Inn</button>
+                </Link>
+                <Switch>
+                    <Route exact path="/home" component={Home}> 
+                    </Route>
+                </Switch>
+            </Router>
+            
         </div>
     </div>
     );
