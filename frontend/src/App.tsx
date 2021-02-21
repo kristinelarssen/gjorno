@@ -4,36 +4,24 @@ import './App.css';
 //import Navbar from './components/Navbar';
 //import Activity from './components/Activity';
 //import { render } from '@testing-library/react';
-import { Login, Signup } from "./components/Login/index";
+// import { Login, Signup } from "./components/Login/index";
 import { isPropertySignature } from 'typescript';
 //import {Link} from "react-router-dom";
-import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom"
+import { BrowserRouter as Router, Route, Switch, Link, Redirect } from "react-router-dom"
+import Home from './pages/home';
+import Start from './pages/start';
 
 
 
 function App() {
-
-  const [state, setState] = useState(false);
-
-  function switchState() {
-    setState(prevState => !prevState)
-  }
-
   return (
-    <div className="App">
-      <div className="switch-state">
-          <a>
-            <button type="button" className="btn" onClick={switchState}>Endre state!</button>
-          </a>
-        </div>
-      <div className="login">
-        <div className="container">
-          {state && <Login />}
-          {!state && <Signup />}
-
-        </div>
-      </div>
-    </div>
+    <Router>
+      <Switch>
+        <Route path={"/"} exact component={Start}/>
+        <Route path={"/home"} exact component={Home}/>
+        <Redirect to={"/"} />
+      </Switch>
+    </Router>
   )
 }
 

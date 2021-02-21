@@ -1,7 +1,7 @@
 import React from "react";
 import loginImage from "./login-image.png";
 import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
-import Home from "../../views/home";
+import Home from "../../pages/home";
 
 function Signup() {
 
