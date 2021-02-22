@@ -19,11 +19,6 @@ function Start() {
   
     return (
       <div className="App">
-        <div className="switch-state">
-            <a>
-              <button type="button" className="btn" onClick={switchState}>Endre state!</button>
-            </a>
-          </div>
         <div className="login">
           <div className="container">
             {state && <Login />}
@@ -31,6 +26,15 @@ function Start() {
   
           </div>
         </div>
+        <div className="switch-state">
+          <a>
+            {state ? (
+              <button type="button" id="button-link" onClick={switchState}>Registrer deg</button>
+            ) : (
+              <button type="button" id="button-link" onClick={switchState}>Logg inn</button>
+            )}
+          </a>    
+          </div>
       </div>
     )
   }

@@ -10,7 +10,7 @@ function Signup() {
         <div className="header">Registrer deg</div>
         <div className="content">
             <div className="image">
-                <img src={loginImage}/>
+                <img id="login-image" src={loginImage}/>
             </div>
             <div className="form">
                 <div className="form-group">
