@@ -25,7 +25,7 @@ const NewActivity: FC<Props> = ({ popup }) => {
 
     const sendPostRequest = async () => {
       try {
-        axios.post(`activities/`, data, config);
+        await axios.post(`activities/`, data, config);
       } catch (error) {
         console.error(error);
       }
