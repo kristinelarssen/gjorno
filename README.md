@@ -1,14 +1,13 @@
 # GjørNo
-GjørNo' er en nettside hvor man kan bli inspirert, arrangere og melde seg på ulike aktiviteter. 
+GjørNo' er en nettside hvor man kan bli inspirert, arrangere og melde seg på ulike aktiviteter. Her kan privatpersoner blant annet legge ut poster av aktiviteter vedkommende har gjennomført, slik at andre kan inspirers til å gjøre det samme. Videre kan organisasjoner kan legge ut aktiviteter som man kan melde seg på. 
 
-## Organisering
+## Teknologier
 
-### Backend
-Django med Django restframework.
-Database: sqlite3
+**Frontend**
+Siden er basert på React og TypeScript.
 
-### Frontend
-React med Typescript
+**Backend**
+Bygget på Django REST framework med sqlite3 som DB.
 
 ## Hvordan kjøre nettsiden:
 ### 1) Backend
@@ -28,6 +27,7 @@ yarn start
 ```
 
 ## Brukerhistorier
+Under finner du en listen med alle brukerhistoriene våre.
 
 | Id  | Navn | Brukerhistorie | 
 | --- | ------------- | ------------------------------------- |
