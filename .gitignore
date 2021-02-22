@@ -5,3 +5,4 @@ venv
 .DS_store
 pyvenv.cfg
 .vscode
+.node_modules
