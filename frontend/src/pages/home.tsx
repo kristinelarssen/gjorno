@@ -1,43 +1,49 @@
-import React, { Component } from 'react';
-import { useState, useEffect, useRef } from 'react';
-// import './App.css';
-import Navbar from '../components/Navbar';
-import Activity from '../components/Activity';
+import React, { useEffect, useState } from "react";
+import axios from "../axios";
 //import { render } from '@testing-library/react';
 // import { Login, Signup } from "../components/Login/index";
-import { isPropertySignature } from 'typescript';
-import ActivityList from '../components/ActivityList';
-import NewActivity from '../components/NewActivity';
-
+import ActivityList from "../components/ActivityList";
+// import './App.css';
+import Navbar from "../components/Navbar";
+import NewActivity from "../components/NewActivity";
+import IActivity from "../interfaces/activity";
 
 function Home() {
   const [popup, setPopup] = useState(false);
+  const [activities, setActivities] = useState<IActivity[]>([]);
+
+  useEffect(() => {
+    async function fetchData() {
+      const request = await axios.get("activities/");
+      setActivities(request.data);
+      return;
+    }
+    fetchData();
+  }, [popup]);
 
   return (
     <div className="Home">
       <header>
         <Navbar />
-        <button id="btnNewAct" onClick={() => {setPopup(!popup)}}>+</button>
+        <button
+          id="btnNewAct"
+          onClick={() => {
+            setPopup(!popup);
+          }}
+        >
+          +
+        </button>
       </header>
-      <div id = "activities">
-        <ActivityList />
+      <div id="activities">
+        <ActivityList activities={activities} />
       </div>
       <div>
-        {popup?<NewActivity popup={() => setPopup(!popup)}></NewActivity>: null}
+        {popup ? (
+          <NewActivity popup={() => setPopup(!popup)}></NewActivity>
+        ) : null}
       </div>
     </div>
   );
 }
 
-const navigation = {
-  brand: { name: "Navbar", to: "/home"},
-  links: [
-    //{name: "???", to: "URL"}
-  ]
-}
-
-export const setPopup = () => {
-  
-}
-
-export default Home
+export default Home;
