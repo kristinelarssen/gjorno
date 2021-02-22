@@ -1,3 +1,4 @@
+import { stringify } from "querystring";
 import { useEffect, useState } from "react";
 import axios from "../../axios";
 import IActivity from "../../interfaces/activity";
@@ -18,8 +19,10 @@ const ActivityList: React.FC = () => {
     fetchData();
   }, []);
 
+
+
   return (
-    <div>
+    <div id = "activities">
       {activities &&
         activities.length > 0 &&
         activities.map((item) => (
