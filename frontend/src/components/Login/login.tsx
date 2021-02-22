@@ -12,7 +12,7 @@ function Login() {
         <div className="header">Logg inn</div>
         <div className="content">
             <div className="image">
-                <img src={loginImage}/>
+                <img id ="login-image" src={loginImage}/>
             </div>
             <div className="form">
                 <div className="form-group">
@@ -26,10 +26,10 @@ function Login() {
             </div>
         </div>
         <div className="footer">
+            <Link to={"home"}>
+                <button type="button" className="btn">Logg Inn</button>
+            </Link>
             <Router>
-                <Link to={"home"}>
-                        <button type="button" className="btn">Logg Inn</button>
-                </Link>
                 <Switch>
                     <Route exact path="/home" component={Home}> 
                     </Route>

@@ -28,10 +28,10 @@ function Signup() {
             </div>
         </div>
         <div className="footer">
-        <Router>
             <Link to={"home"}>
-                    <button type="button" className="btn">Registrer Deg</button>
+                <button type="button" className="btn">Registrer Deg</button>
             </Link>
+        <Router>
             <Switch>
                 <Route exact path="/home" component={Home}> 
                 </Route>

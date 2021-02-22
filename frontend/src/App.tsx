@@ -15,13 +15,15 @@ import Start from './pages/start';
 
 function App() {
   return (
-    <Router>
-      <Switch>
-        <Route path={"/"} exact component={Start}/>
-        <Route path={"/home"} exact component={Home}/>
-        <Redirect to={"/"} />
-      </Switch>
-    </Router>
+    <div className="App">
+      <Router>
+        <Switch>
+          <Route path={"/home"} exact component={Home}/>
+          <Route path={"/"} exact component={Start}/>
+          <Redirect to={"/"} />
+        </Switch>
+      </Router>
+    </div>
   )
 }
 

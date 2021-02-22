@@ -1,5 +1,4 @@
 .base-container {
-
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -18,6 +17,10 @@
 
 .image {
     width: 21em;
+}
+
+#login-imagee {
+    size: 10rem;
 }
 
 .form {
