@@ -1,6 +1,9 @@
 # GjørNo
 GjørNo' er en nettside hvor man kan bli inspirert, arrangere og melde seg på ulike aktiviteter. Her kan privatpersoner blant annet legge ut poster av aktiviteter vedkommende har gjennomført, slik at andre kan inspirers til å gjøre det samme. Videre kan organisasjoner kan legge ut aktiviteter som man kan melde seg på. 
 
+<br>
+<br>
+
 ## Teknologier
 
 **Frontend**
@@ -8,6 +11,9 @@ Siden er basert på React og TypeScript.
 
 **Backend**
 Bygget på Django REST framework med sqlite3 som DB.
+
+<br>
+<br>
 
 ## Hvordan kjøre nettsiden:
 ### 1) Backend
@@ -26,8 +32,11 @@ Gå inn i frontend-mappen
 yarn start
 ```
 
+<br>
+<br>
+
 ## Brukerhistorier
-Under finner du en listen med alle brukerhistoriene våre.
+Under finner du en liste med alle brukerhistoriene våre.
 
 | Id  | Navn | Brukerhistorie | 
 | --- | ------------- | ------------------------------------- |
