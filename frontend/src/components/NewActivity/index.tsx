@@ -49,17 +49,23 @@ const NewActivity: FC<NAProps> = (prop) => {
     
     return (
        <div className="popUp">
-           <h3 id="tittel" >Ny aktivitet</h3>
-           <label>Tittel:</label>
-           <input name = "title" className="input" value = {title} onChange={(event) => setTitle(event.target.value)}/>
-           <br/>
-           <label>Beskrivelse:</label>
-           <textarea name="description" className="input" value = {description} onChange={(event) => setDes(event.target.value)}/>
-           <br/>
-           <label>Dato:</label>
-           <input name="date" className="input" type="datetime-local" value = {date} onChange={(event) => setDate(event.target.value)}/>
-           <button className = "btn" id="btnExit" onClick={prop.popup} >X</button>
-           <button className = "btn" id = "btnOk" onClick={()=> {handleSubmit(); prop.popup();}} >OK</button>
+          <h3 id="tittel" >Ny aktivitet</h3>
+          <div className="div">
+          <label className="label">Tittel:</label>
+          <input name = "title" className="input" value = {title} onChange={(event) => setTitle(event.target.value)}/>
+          </div>
+          <br/>
+          <div className="div">
+          <label className="label">Beskrivelse:</label>
+          <textarea name="description" className="input" value = {description} onChange={(event) => setDes(event.target.value)}/>
+          </div>
+          <br/>
+          <div className="div" id="divDato">
+          <label className="label">Dato:</label>
+          <input name="date" className="input" type="datetime-local" value = {date} onChange={(event) => setDate(event.target.value)}/>
+          </div>
+          <button className = "btn" id="btnExit" onClick={prop.popup} >X</button>
+          <button className = "btn" id = "btnOk" onClick={()=> {handleSubmit(); prop.popup();}} >OK</button>
        </div>
     )
 }

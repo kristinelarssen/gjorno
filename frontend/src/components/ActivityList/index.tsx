@@ -29,9 +29,9 @@ const ActivityList: React.FC = () => {
           <Activity
             key={item.id}
             title={item.title}
-            created={moment(item.created).format("Do MMMM YYYY, H:MM:SS")}
+            created={moment(item.created).format('DD MMM, YYYY, HH:mm')}
             description={item.description}
-            date={moment(item.date).format("Do MMMM YYYY, H:MM:SS")}
+            date={moment(item.date).format('DD MMM, YYYY, HH:mm')}
           />
         ))}
     </div>

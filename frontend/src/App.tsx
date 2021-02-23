@@ -19,7 +19,7 @@ function App() {
     <div className="App">
       <header>
         <Navbar />  
-        <button id = "btnNewAct" onClick={() => {setPopup(!popup)}}>+</button>    
+        <button id = "btnNewAct" onClick={() => {setPopup(!popup)}}>OPPRETT NY AKTIVITET</button>    
       </header>
       <div id="activities">
         <ActivityList />
