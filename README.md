@@ -1,5 +1,5 @@
 # GjørNo
-GjørNo' er en nettside hvor man kan bli inspirert, arrangere og melde seg på ulike aktiviteter. Her kan privatpersoner blant annet legge ut poster av aktiviteter vedkommende har gjennomført, slik at andre kan inspirers til å gjøre det samme. Videre kan organisasjoner kan legge ut aktiviteter som man kan melde seg på. 
+GjørNo' er en nettside hvor man kan bli inspirert, arrangere og melde seg på ulike aktiviteter. Her kan privatpersoner blant annet legge ut poster av aktiviteter vedkommende har gjennomført, slik at andre kan inspirers til å gjøre det samme. Videre kan organisasjoner legge ut aktiviteter som andre brukere kan melde seg på. 
 
 <br>
 
@@ -29,6 +29,36 @@ Gå inn i frontend-mappen
 ```bash
 yarn start
 ```
+
+<br>
+
+## Mappestruktur
+    gjorno/
+        frontend/
+            src/
+                components/
+                    ...
+                pages/
+                    ...
+                style/
+                    ...
+                interface/
+                    ...
+                App.tsx
+                ...
+            package.json
+            ...
+        backend/
+            api/
+                api/
+                    models.py
+                    urls.py
+                    serializers.py
+                    ...
+                settings.py
+                ...
+            manage.py
+            ...
 
 <br>
 
