@@ -13,6 +13,17 @@ import Start from "./pages/start";
 function App() {
   return (
     <div className="App">
+      <header>
+        <Navbar />  
+        <button id = "btnNewAct" onClick={() => {setPopup(!popup)}}>OPPRETT NY AKTIVITET</button>    
+      </header>
+      <div id="activities">
+        <ActivityList />
+      </div>
+      <div>
+        {popup?<NewActivity popup={() => setPopup(!popup)}></NewActivity>: null}
+      </div>
+
       <Router>
         <Switch>
           <Route path={"/home"} exact component={Home} />

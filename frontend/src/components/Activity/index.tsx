@@ -12,9 +12,9 @@ const Activity: React.FC<IActivity> = ({
   return (
     <div key={id} className="box">
       <h3>{title}</h3>
-      <p>Opprettet: {created}</p>
-      <p>Beskrivelse: {description}</p>
-      <p>Dato og tidspunkt: {date}</p>
+      <p id ="opprettet">Opprettet: {created}</p>
+      <p>{description}</p>
+      <p id="dato">Dato og tidspunkt: {date}</p>
     </div>
   );
 };

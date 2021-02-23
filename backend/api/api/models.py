@@ -6,13 +6,6 @@ class Activity(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     description = models.TextField(default="")
     date = models.DateTimeField()
-    
 
     def __str__(self):
         return self.title
-
-
-
-
-
-

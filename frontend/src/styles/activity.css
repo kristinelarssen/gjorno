@@ -5,5 +5,15 @@
     width: 200px;
     height: 200px;
     border-radius: 20px;
-    
+    flex: auto;
 }
+
+#opprettet{
+    font-size: smaller;
+    color: #DAD7CD;
+}
+
+#dato{
+    font-size: smaller;
+}
+

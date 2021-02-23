@@ -8,7 +8,7 @@
     padding: 20px;
     margin-left: 30%;
     margin-right: 30%;
-    position: absolute;
+    position: fixed;
     top: 150px;
 }
 
@@ -41,6 +41,24 @@
 
 .input{
     margin: 10px;
+    position: absolute;
+    left: 340px;
+    
+}
+
+.label{
+    margin: 10px;
+    position: absolute;
+    left: 240px;
+   
+}
+
+.div{
+    margin: 20px;
+}
+
+#divDato{
+    margin-top: 40px;
 }
 
 #tittel{
