@@ -34,6 +34,7 @@ yarn start
 
 ## Mappestruktur
 Vi har valgt å skille frontend og backend i egne mapper. 
+
     gjorno/
         frontend/
             src/
