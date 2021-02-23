@@ -1,20 +1,16 @@
-
-import ActivityList from "./components/ActivityList";
-import React, { Component } from 'react';
-import { useState } from 'react';
-import { useEffect } from 'react';
-import './App.css';
-import Navbar from './components/Navbar';
-import Activity from './components/Activity';
-import NewActivity from './components/NewActivity';
-//import { render } from '@testing-library/react';
-
+import React from "react";
+import "./App.css";
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch,
+  Link,
+  Redirect,
+} from "react-router-dom";
+import Home from "./pages/home";
+import Start from "./pages/start";
 
 function App() {
-
-  const[popup, setPopup] = useState(false);
-
-  
   return (
     <div className="App">
       <header>
@@ -27,21 +23,16 @@ function App() {
       <div>
         {popup?<NewActivity popup={() => setPopup(!popup)}></NewActivity>: null}
       </div>
+
+      <Router>
+        <Switch>
+          <Route path={"/home"} exact component={Home} />
+          <Route path={"/"} exact component={Start} />
+          <Redirect to={"/"} />
+        </Switch>
+      </Router>
     </div>
   );
 }
-
-
-const navigation = {
-  brand: { name: "Navbar", to: "/"},
-  links: [
-    //{name: "???", to: "URL"}
-  ]
-}
-
-export const setPopup = () =>{
-
-}
-
 
 export default App;
