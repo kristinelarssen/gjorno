@@ -12,14 +12,32 @@ function Home() {
   const [popup, setPopup] = useState(false);
   const [activities, setActivities] = useState<IActivity[]>([]);
 
+  async function fetchData() {
+    const request = await axios.get("activities/");
+    setActivities(request.data);
+    return;
+  }
+
   useEffect(() => {
-    async function fetchData() {
-      const request = await axios.get("activities/");
-      setActivities(request.data);
-      return;
-    }
     fetchData();
-  }, [popup]);
+  }, []);
+
+  const handleSubmit = (data: IActivity) => {
+    const config = {
+      headers: { "Content-Type": "application/json" },
+    };
+
+    const sendPostRequest = async () => {
+      try {
+        await axios.post(`activities/`, data, config);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    sendPostRequest();
+    fetchData();
+  };
 
   return (
     <div className="Home">
@@ -39,7 +57,12 @@ function Home() {
       </div>
       <div>
         {popup ? (
-          <NewActivity popup={() => setPopup(!popup)}></NewActivity>
+          <NewActivity
+            popup={() => {
+              setPopup(!popup);
+            }}
+            handleSubmit={handleSubmit}
+          ></NewActivity>
         ) : null}
       </div>
     </div>

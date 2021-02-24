@@ -7,5 +7,8 @@ class Activity(models.Model):
     description = models.TextField(default="")
     date = models.DateTimeField()
 
+    class Meta:
+        verbose_name_plural = "Activities"
+
     def __str__(self):
         return self.title
