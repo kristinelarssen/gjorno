@@ -30,13 +30,12 @@ function Home() {
     const sendPostRequest = async () => {
       try {
         await axios.post(`activities/`, data, config);
+        fetchData();
       } catch (error) {
         console.error(error);
       }
     };
-
     sendPostRequest();
-    fetchData();
   };
 
   return (
