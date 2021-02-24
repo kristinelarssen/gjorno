@@ -12,6 +12,8 @@ function Home() {
   const [popup, setPopup] = useState(false);
   const [activities, setActivities] = useState<IActivity[]>([]);
 
+  
+
   async function fetchData() {
     const request = await axios.get("activities/");
     setActivities(request.data);

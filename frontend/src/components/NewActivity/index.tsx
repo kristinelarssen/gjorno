@@ -20,7 +20,7 @@ const NewActivity: FC<Props> = ({ popup, handleSubmit }) => {
       date: new Date(date),
     };
     handleSubmit(data);
-    popup();
+    popup();  
   };
 
   return (
