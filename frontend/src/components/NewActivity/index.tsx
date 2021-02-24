@@ -26,30 +26,36 @@ const NewActivity: FC<Props> = ({ popup, handleSubmit }) => {
   return (
     <div className="popUp">
       <h3 id="tittel">Ny aktivitet</h3>
-      <label>Tittel:</label>
-      <input
-        name="title"
-        className="input"
-        value={title}
-        onChange={(event) => setTitle(event.target.value)}
-      />
+      <div className="div">
+        <label className="label">Tittel:</label>
+        <input
+          name="title"
+          className="input"
+          value={title}
+          onChange={(event) => setTitle(event.target.value)}
+        />
+      </div>
       <br />
-      <label>Beskrivelse:</label>
-      <textarea
-        name="description"
-        className="input"
-        value={description}
-        onChange={(event) => setDescription(event.target.value)}
-      />
+      <div className="div">
+        <label className="label">Beskrivelse:</label>
+        <textarea
+          name="description"
+          className="input"
+          value={description}
+          onChange={(event) => setDescription(event.target.value)}
+        />
+      </div>
       <br />
-      <label>Dato:</label>
-      <input
-        name="date"
-        className="input"
-        type="datetime-local"
-        value={date}
-        onChange={(event) => setDate(event.target.value)}
-      />
+      <div className="div" id="divDato">
+        <label className="label">Dato:</label>
+        <input
+          name="date"
+          className="input"
+          type="datetime-local"
+          value={date}
+          onChange={(event) => setDate(event.target.value)}
+        />
+      </div>
       <button className="btn" id="btnExit" onClick={popup}>
         X
       </button>

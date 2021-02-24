@@ -3,7 +3,7 @@ import axios from "../axios";
 //import { render } from '@testing-library/react';
 // import { Login, Signup } from "../components/Login/index";
 import ActivityList from "../components/ActivityList";
-// import './App.css';
+import "./../App.css";
 import Navbar from "../components/Navbar";
 import NewActivity from "../components/NewActivity";
 import IActivity from "../interfaces/activity";
@@ -39,7 +39,7 @@ function Home() {
   };
 
   return (
-    <div className="Home">
+    <div className="App">
       <header>
         <Navbar />
         <button
@@ -48,7 +48,7 @@ function Home() {
             setPopup(!popup);
           }}
         >
-          +
+          OPPRETT NY AKTIVITET
         </button>
       </header>
       <div id="activities">
