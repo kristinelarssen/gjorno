@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "rest_framework",
     "api",
+    'rest_framework.authtoken',
 ]
 
 MIDDLEWARE = [
@@ -126,3 +127,5 @@ STATIC_URL = "/static/"
 
 #Gir custome user tilgang til feltene til den innebygde modellen User
 #USER_DETAILS_SERIALIZER = UserProfileSerializer
+
+#AUTH_USER_MODEL = 'api.User'

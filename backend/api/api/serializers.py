@@ -1,18 +1,18 @@
 from rest_framework import serializers
-from .models import Activity, UserProfile
+from .models import Activity
 from django.contrib.auth.models import User
+#from rest_framework.authtoken.views import Token
+
+
+#from django.contrib.auth.models import User
 
 
 class ActivitySerializer(serializers.ModelSerializer):
     class Meta:
         model = Activity
-        fields = ["id", "title", "created", "description", "date",'owner']
+        fields = ["id", "title", "created", "description", "date"]
 
-class UserProfileSerializer(serializers.HyperlinkedModelSerializer):
-    activities = serializers.HyperlinkedRelatedField(many=True, view_name='activity-detail', read_only=True)
-
-class UserSerializer(serializers.HyperlinkedModelSerializer):  
-    user_profile_details= UserProfileSerializer(many=True)
+class UserSerializer(serializers.ModelSerializer):
     class Meta:
-        model=User
-        fields = ('id','username','password','user_profile_details')
+        model =User
+        fields = [ 'id', 'username','email','password']
