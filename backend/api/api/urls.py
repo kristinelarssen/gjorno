@@ -8,4 +8,5 @@ router = DefaultRouter()
 router.register(r"activities", views.ActivityViewSet)
 
 # The API URLs are now determined automatically by the router.
-urlpatterns = [path("", include(router.urls)), path("admin/", admin.site.urls),]
+urlpatterns = [path("", include(router.urls)), path("admin/", admin.site.urls)]
+
