@@ -1,9 +1,8 @@
-import * as React from 'react'
-import Login from "./login"
-import Signup from "./signup"
+import Login from "./login";
+import Signup from "./signup";
 /**
 export { Login } from "./login";
 export { Signup } from "./signup";
  */
-export { Login }
-export { Signup }
+export { Login };
+export { Signup };

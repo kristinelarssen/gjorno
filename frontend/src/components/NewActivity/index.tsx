@@ -1,37 +1,26 @@
 import React, { FC, useState } from "react";
-import axios from "../../axios";
+import IActivity from "../../interfaces/activity";
 import "../../styles/newActivity.css";
 
 interface Props {
   popup: () => void;
+  handleSubmit: (data: IActivity) => void;
 }
 
-const NewActivity: FC<Props> = ({ popup }) => {
+const NewActivity: FC<Props> = ({ popup, handleSubmit }) => {
   const [title, setTitle] = useState("");
-  const [description, setDes] = useState("");
+  const [description, setDescription] = useState("");
   const [date, setDate] = useState("");
 
-  const handleSubmit = () => {
+  const handleOnClick = () => {
     const data = {
       title: title,
       created: new Date(),
       description: description,
       date: new Date(date),
     };
-
-    const config = {
-      headers: { "Content-Type": "application/json" },
-    };
-
-    const sendPostRequest = async () => {
-      try {
-        axios.post(`activities/`, data, config);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-
-    sendPostRequest();
+    handleSubmit(data);
+    popup();
   };
 
   return (
@@ -50,7 +39,7 @@ const NewActivity: FC<Props> = ({ popup }) => {
         name="description"
         className="input"
         value={description}
-        onChange={(event) => setDes(event.target.value)}
+        onChange={(event) => setDescription(event.target.value)}
       />
       <br />
       <label>Dato:</label>
@@ -64,14 +53,7 @@ const NewActivity: FC<Props> = ({ popup }) => {
       <button className="btn" id="btnExit" onClick={popup}>
         X
       </button>
-      <button
-        className="btn"
-        id="btnOk"
-        onClick={() => {
-          handleSubmit();
-          popup();
-        }}
-      >
+      <button className="btn" id="btnOk" onClick={handleOnClick}>
         OK
       </button>
     </div>
