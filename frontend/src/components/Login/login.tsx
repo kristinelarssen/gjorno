@@ -5,13 +5,16 @@ import "../../styles/login.css"
 import Home from "../../pages/home";
 import axios from "axios";
 import IUserLogin from "../../interfaces/userlogin";
+import { ok } from "assert";
 
 
+let isAuth = false;
+let link = "/";
 
 function Login() {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
-    let isAuth = false;
+   
 
     const handleRegister = (data: IUserLogin) => {
         const config = {
@@ -20,16 +23,22 @@ function Login() {
         console.log(data)
         const sendPostRequest = async () => {
           try {
-            await axios.post(`http://localhost:8000/auth/`, data, config).then(()=>{isAuth=true});
+            await axios.post(`http://localhost:8000/auth/`, data, config);
+            
           } catch (error) {
             console.error(error);
+            isAuth=false;
+            link="/";
+        
           }
+          isAuth=true;
+          link = "/home";
         };
-    
         sendPostRequest();
+       
+        console.log(isAuth)
+        console.log(link)
       };
-
-
 
     const handleOnClick = () => {
       const data = {
@@ -59,15 +68,11 @@ function Login() {
             </div>
         </div>
         <div className="footer">
+            <Link to={link}>
             <button type="button" className="btn" onClick={handleOnClick} > Logg Inn</button>
-            <Router>
-                <Switch>
-                    <Route exact path="/home" component={Home}> 
-                    
-                    </Route>
-                </Switch>
-            </Router>
+            <Route path="/login" component={Login} />
             
+            </Link>
         </div>
     </div>
     );
