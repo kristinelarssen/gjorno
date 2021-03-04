@@ -4,6 +4,7 @@ import ActivityList from "../components/ActivityList";
 import Navbar from "../components/Navbar";
 import NewActivity from "../components/NewActivity";
 import IActivity from "../interfaces/activity";
+import "./../App.css";
 
 function Home() {
   const [popup, setPopup] = useState(false);
@@ -24,22 +25,22 @@ function Home() {
 
   useEffect(() => {
     fetchData();
-  }, []);
+  });
 
   const handleSubmit = (data: IActivity) => {
     const sendPostRequest = async () => {
       try {
         await axios.post(`activities/`, data, config);
+        fetchData();
       } catch (error) {
         console.error(error);
       }
     };
     sendPostRequest();
-    fetchData();
   };
 
   return (
-    <div className="Home">
+    <div className="App">
       <header>
         <Navbar />
         <button
@@ -48,7 +49,7 @@ function Home() {
             setPopup(!popup);
           }}
         >
-          +
+          OPPRETT NY AKTIVITET
         </button>
       </header>
       <div id="activities">
