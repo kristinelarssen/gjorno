@@ -25,8 +25,11 @@ const LoginForm: React.FC<Props> = ({ handleLogin }) => {
         <form>
           <div className="form">
             <div className="form-group">
-              <label htmlFor="username">Brukernavn</label>
+              <label htmlFor="username" className="loginLabel">
+                Brukernavn
+              </label>
               <input
+                className="loginInput"
                 type="text"
                 name="username"
                 placeholder="Brukernavn"
@@ -35,8 +38,11 @@ const LoginForm: React.FC<Props> = ({ handleLogin }) => {
               ></input>
             </div>
             <div className="form-group">
-              <label htmlFor="password">Passord</label>
+              <label htmlFor="password" className="loginLabel">
+                Passord
+              </label>
               <input
+                className="loginInput"
                 type="password"
                 name="password"
                 placeholder="Passord"
@@ -49,7 +55,7 @@ const LoginForm: React.FC<Props> = ({ handleLogin }) => {
           <div className="footer">
             <button
               type="submit"
-              className="btn"
+              className="loginBtn"
               onClick={(event) =>
                 handleLogin(event, { username: username, password: password })
               }

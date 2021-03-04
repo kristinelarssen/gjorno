@@ -1,66 +1,70 @@
-.popUp{
-    width: 40%;
-    height: 200px;
-    border: 4px;
-    border-radius: 8px;
-    background-color: #DAD7CD;
-    border-color: #344E41;
-    padding: 20px;
-    margin-left: 30%;
-    margin-right: 30%;
-    position: fixed;
-    top: 150px;
+.popUp {
+  width: 40%;
+  height: 250px;
+  border: 4px;
+  border-radius: 8px;
+  background-color: #dad7cd;
+  border-color: #3a5a40;
+  padding: 20px;
+  margin-left: 30%;
+  margin-right: 30%;
+  position: fixed;
+  top: 150px;
 }
 
-.description{
-    height: 80px;
+.description {
+  height: 80px;
 }
 
-.btn{
-    color: white;
-    background-color: #344E41;
-    border-radius: 5px;
-    border-width: 0;
-}
-#btnExit{
-    position: absolute;
-    right: 30px;
-    top: 20px;
-    width: 20px;
-    height: 20px;
-
-}
-#btnOk{
-    position: absolute;
-    right: 30px;
-    bottom: 20px;
-    width: 60px;
-    height: 30px;
-    font-weight: bolder;
+.btn {
+  color: white;
+  background-color: #3a5a40;
+  border-radius: 5px;
+  border-width: 0;
 }
 
-.input{
-    margin: 10px;
-    position: absolute;
-    left: 340px;
-    
+.btn:hover {
+  background-color: #588157;
 }
 
-.label{
-    margin: 10px;
-    position: absolute;
-    left: 240px;
-   
+#btnExit {
+  position: absolute;
+  right: 30px;
+  top: 20px;
+  height: 30px;
+  width: 50px;
+  font-size: 20px;
+}
+#btnOk {
+  position: absolute;
+  right: 30px;
+  bottom: 20px;
+  height: 30px;
+  width: 50px;
+  font-weight: bolder;
+  font-size: 20px;
 }
 
-.div{
-    margin: 20px;
+.input {
+  margin: 10px;
+  position: absolute;
+  left: 36%;
+  width: 200px;
+  height: 20px;
 }
 
-#divDato{
-    margin-top: 40px;
+.label {
+  margin: 10px;
+  position: absolute;
+  left: 10%;
+  font-size: 20px;
 }
 
-#tittel{
-    margin-top: 0;
+.div {
+  margin: 30px;
+}
+
+#tittel {
+  margin-top: 0;
+  font-size: 25px;
 }

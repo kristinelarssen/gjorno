@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import IUser from "../../interfaces/user";
 import loginImage from "../../images/login-image.png";
 import { Link } from "react-router-dom";
+import "../../styles/login.css";
 
 interface Props {
   handleSignup: (
@@ -25,8 +26,11 @@ const SignupForm: React.FC<Props> = ({ handleSignup }) => {
           </div>
           <div className="form">
             <div className="form-group">
-              <label htmlFor="username">Brukernavn</label>
+              <label htmlFor="username" className="loginLabel">
+                Brukernavn
+              </label>
               <input
+                className="loginInput"
                 type="text"
                 placeholder="Brukernavn"
                 value={username}
@@ -34,8 +38,11 @@ const SignupForm: React.FC<Props> = ({ handleSignup }) => {
               ></input>
             </div>
             <div className="form-group">
-              <label htmlFor="email">E-post</label>
+              <label htmlFor="email" className="loginLabel">
+                E-post
+              </label>
               <input
+                className="loginInput"
                 type="email"
                 placeholder="E-post"
                 value={email}
@@ -43,8 +50,11 @@ const SignupForm: React.FC<Props> = ({ handleSignup }) => {
               ></input>
             </div>
             <div className="form-group">
-              <label htmlFor="password">Passord</label>
+              <label htmlFor="password" className="loginLabel">
+                Passord
+              </label>
               <input
+                className="loginInput"
                 type="password"
                 placeholder="Passord"
                 value={password}
@@ -56,7 +66,7 @@ const SignupForm: React.FC<Props> = ({ handleSignup }) => {
         <div className="footer">
           <button
             type="submit"
-            className="btn"
+            className="loginBtn"
             onClick={(event) => {
               handleSignup(event, {
                 username: username,

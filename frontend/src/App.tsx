@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { Router, Redirect, Route, Switch } from "react-router-dom";
+import React, { useEffect, useMemo, useState } from "react";
+import { Router, Redirect, Route, Switch, Link } from "react-router-dom";
 import "./App.css";
 import LoginForm from "./components/LoginForm";
 import SignupForm from "./components/SignupForm";
@@ -14,11 +14,14 @@ function App() {
     localStorage.getItem("token") ? true : false
   );
 
-  const config = {
-    headers: {
-      "Content-Type": "application/json",
-    },
-  };
+  const config = useMemo(() => {
+    return {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `JWT ${localStorage.getItem("token")}`,
+      },
+    };
+  }, []);
 
   const handleLogin = (
     event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
@@ -27,18 +30,12 @@ function App() {
     event.preventDefault();
     const sendLoginRequest = async () => {
       try {
-        await axios
-          .post("token-auth/", data, config)
-          .then((res) => JSON.parse(res.data))
-          .then((json) => {
-            console.log(json);
-            localStorage.setItem("token", json.token);
-            console.log(json.token);
-            setAuthenticated(true);
-            console.log(isAuthenticated);
-            setUsername(json.user.username);
-            history.push("/home");
-          });
+        await axios.post("token-auth/", data, config).then((res) => {
+          localStorage.setItem("token", res.data.token);
+          setAuthenticated(true);
+          setUsername(res.data.user.username);
+          history.push("/home");
+        });
       } catch (error) {
         console.log(error);
       }
@@ -53,16 +50,12 @@ function App() {
     event.preventDefault();
     const sendSignupRequest = async () => {
       try {
-        await axios
-          .post("users/", data, config)
-          .then((res) => JSON.parse(res.data))
-          .then((json) => {
-            console.log(json);
-            localStorage.setItem("token", json.token);
-            setAuthenticated(true);
-            setUsername(json.username);
-            history.push("/login");
-          });
+        await axios.post("users/", data, config).then((res) => {
+          localStorage.setItem("token", res.data.token);
+          setAuthenticated(true);
+          setUsername(res.data.username);
+          history.push("/home");
+        });
       } catch (error) {
         console.log(error);
       }
@@ -70,39 +63,66 @@ function App() {
     sendSignupRequest();
   };
 
+  const handleLogOut = () => {
+    localStorage.removeItem("token");
+    setUsername("");
+    setAuthenticated(false);
+    history.push("/");
+  };
+
   useEffect(() => {
     if (isAuthenticated) {
-      axios
-        .get("current_user/", {
-          headers: {
-            Authorization: `JWT ${localStorage.getItem("token")}`,
-          },
-        })
-        .then((res) => JSON.parse(res.data))
-        .then((json) => {
-          console.log(json);
-          setUsername(json.username);
+      try {
+        axios.get("current_user/", config).then((res) => {
+          setUsername(res.data.username);
         });
+      } catch (error) {
+        console.log(error);
+      }
     }
-  }, [isAuthenticated]);
+  }, [isAuthenticated, config]);
 
   return (
     <div className="App">
+      {isAuthenticated ? (
+        <div>
+          <h3>Hello {username}</h3>
+          <button onClick={handleLogOut}>Logg ut</button>
+        </div>
+      ) : (
+        <div>
+          <h3>Please log in</h3>
+          <Link to="/login">
+            <button>Log in</button>
+          </Link>
+        </div>
+      )}
       <Router history={history}>
         <Switch>
           <Route path={"/home"} exact component={Home} />
           <Route path={"/login"} exact>
-            <LoginForm handleLogin={handleLogin} />
+            {isAuthenticated ? (
+              <Redirect to={"/home"} />
+            ) : (
+              <LoginForm handleLogin={handleLogin} />
+            )}
           </Route>
           <Route path={"/signup"} exact>
-            <SignupForm handleSignup={handleSignup} />
+            {isAuthenticated ? (
+              <Redirect to={"/home"} />
+            ) : (
+              <SignupForm handleSignup={handleSignup} />
+            )}
           </Route>
           <Route path={"/"} exact>
-            <Redirect to={"/signup"} />
+            {isAuthenticated ? (
+              <Redirect to={"/home"} />
+            ) : (
+              <Redirect to={"/signup"} />
+            )}
           </Route>
         </Switch>
       </Router>
-      <h3>{isAuthenticated ? `Hello ${username}` : "Please Log In"}</h3>
     </div>
   );
 }

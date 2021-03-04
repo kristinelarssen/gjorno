@@ -9,8 +9,15 @@ function Home() {
   const [popup, setPopup] = useState(false);
   const [activities, setActivities] = useState<IActivity[]>([]);
 
+  const config = {
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `JWT ${localStorage.getItem("token")}`,
+    },
+  };
+
   async function fetchData() {
-    const request = await axios.get("activities/");
+    const request = await axios.get("activities/", config);
     setActivities(request.data);
     return;
   }
@@ -20,10 +27,6 @@ function Home() {
   }, []);
 
   const handleSubmit = (data: IActivity) => {
-    const config = {
-      headers: { "Content-Type": "application/json" },
-    };
-
     const sendPostRequest = async () => {
       try {
         await axios.post(`activities/`, data, config);
