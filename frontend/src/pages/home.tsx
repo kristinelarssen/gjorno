@@ -1,9 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "../axios";
-//import { render } from '@testing-library/react';
-// import { Login, Signup } from "../components/Login/index";
 import ActivityList from "../components/ActivityList";
-// import './App.css';
 import Navbar from "../components/Navbar";
 import NewActivity from "../components/NewActivity";
 import IActivity from "../interfaces/activity";
@@ -11,8 +8,6 @@ import IActivity from "../interfaces/activity";
 function Home() {
   const [popup, setPopup] = useState(false);
   const [activities, setActivities] = useState<IActivity[]>([]);
-
-  
 
   async function fetchData() {
     const request = await axios.get("activities/");
@@ -36,7 +31,6 @@ function Home() {
         console.error(error);
       }
     };
-
     sendPostRequest();
     fetchData();
   };
