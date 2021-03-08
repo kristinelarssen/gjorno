@@ -1,19 +1,23 @@
 import React, { useEffect, useState } from "react";
 import axios from "../axios";
-//import { render } from '@testing-library/react';
-// import { Login, Signup } from "../components/Login/index";
 import ActivityList from "../components/ActivityList";
-import "./../App.css";
 import Navbar from "../components/Navbar";
 import NewActivity from "../components/NewActivity";
 import IActivity from "../interfaces/activity";
+import "./../App.css";
 
 function Home() {
   const [popup, setPopup] = useState(false);
   const [activities, setActivities] = useState<IActivity[]>([]);
 
   async function fetchData() {
-    const request = await axios.get("activities/");
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `JWT ${localStorage.getItem("token")}`,
+      },
+    };
+    const request = await axios.get("activities/", config);
     setActivities(request.data);
     return;
   }
@@ -23,11 +27,13 @@ function Home() {
   }, []);
 
   const handleSubmit = (data: IActivity) => {
-    const config = {
-      headers: { "Content-Type": "application/json" },
-    };
-
     const sendPostRequest = async () => {
+      const config = {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `JWT ${localStorage.getItem("token")}`,
+        },
+      };
       try {
         await axios.post(`activities/`, data, config);
         fetchData();

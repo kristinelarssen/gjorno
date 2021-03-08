@@ -1,19 +1,18 @@
 .box {
-    background-color: #A3B18A;
-    padding: 10px;
-    margin: 20px;
-    width: 200px;
-    height: 200px;
-    border-radius: 20px;
-    flex: auto;
+  background-color: #a3b18a;
+  padding: 10px;
+  margin: 20px;
+  width: 200px;
+  height: 200px;
+  border-radius: 20px;
+  flex: auto;
 }
 
-#opprettet{
-    font-size: smaller;
-    color: #DAD7CD;
+#opprettet {
+  font-size: smaller;
+  color: #dad7cd;
 }
 
-#dato{
-    font-size: smaller;
+#dato {
+  font-size: smaller;
 }
-
