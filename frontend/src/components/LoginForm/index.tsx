@@ -66,7 +66,7 @@ const LoginForm: React.FC<Props> = ({ handleLogin }) => {
         </form>
       </div>
       <Link to="/signup">
-        <button>Signup</button>
+        <button id="button-link">Signup</button>
       </Link>
     </div>
   );

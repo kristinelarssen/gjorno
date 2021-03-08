@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { Router, Redirect, Route, Switch, Link } from "react-router-dom";
+import { Redirect, Route, Router, Switch } from "react-router-dom";
 import "./App.css";
+import axios from "./axios";
 import LoginForm from "./components/LoginForm";
 import SignupForm from "./components/SignupForm";
-import Home from "./pages/home";
-import axios from "./axios";
-import IUserLogin from "./interfaces/userlogin";
 import history from "./history";
+import IUserLogin from "./interfaces/userlogin";
+import Home from "./pages/home";
 
 function App() {
   const [username, setUsername] = useState("");
@@ -92,17 +92,10 @@ function App() {
 
   return (
     <div className="App">
-      {isAuthenticated ? (
+      {isAuthenticated && (
         <div>
           <h3>Hello {username}</h3>
           <button onClick={handleLogOut}>Logg ut</button>
-        </div>
-      ) : (
-        <div>
-          <h3>Please log in</h3>
-          <Link to="/login">
-            <button>Log in</button>
-          </Link>
         </div>
       )}
       <Router history={history}>

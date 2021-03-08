@@ -80,7 +80,7 @@ const SignupForm: React.FC<Props> = ({ handleSignup }) => {
         </div>
       </form>
       <Link to="/login">
-        <button>Login</button>
+        <button id="button-link">Login</button>
       </Link>
     </div>
   );
