@@ -24,7 +24,7 @@ function Home() {
 
   useEffect(() => {
     fetchData();
-  });
+  }, []);
 
   const handleSubmit = (data: IActivity) => {
     const sendPostRequest = async () => {
