@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Router, Redirect, Route, Switch, Link } from "react-router-dom";
 import "./App.css";
 import LoginForm from "./components/LoginForm";
@@ -14,20 +14,17 @@ function App() {
     localStorage.getItem("token") ? true : false
   );
 
-  const config = useMemo(() => {
-    return {
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `JWT ${localStorage.getItem("token")}`,
-      },
-    };
-  }, []);
-
   const handleLogin = (
     event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
     data: IUserLogin
   ) => {
     event.preventDefault();
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `JWT ${localStorage.getItem("token")}`,
+      },
+    };
     const sendLoginRequest = async () => {
       try {
         await axios.post("token-auth/", data, config).then((res) => {
@@ -48,6 +45,11 @@ function App() {
     data: IUserLogin
   ) => {
     event.preventDefault();
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
     const sendSignupRequest = async () => {
       try {
         await axios.post("users/", data, config).then((res) => {
@@ -72,6 +74,12 @@ function App() {
 
   useEffect(() => {
     if (isAuthenticated) {
+      const config = {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `JWT ${localStorage.getItem("token")}`,
+        },
+      };
       try {
         axios.get("current_user/", config).then((res) => {
           setUsername(res.data.username);
@@ -80,7 +88,7 @@ function App() {
         console.log(error);
       }
     }
-  }, [isAuthenticated, config]);
+  }, [isAuthenticated]);
 
   return (
     <div className="App">
