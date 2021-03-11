@@ -8,6 +8,7 @@ import SignupForm from "./components/SignupForm";
 import history from "./history";
 import IUserLogin from "./interfaces/userlogin";
 import Home from "./pages/home";
+import loginImage from "./images/login-image.png";
 
 function App() {
   const [username, setUsername] = useState("");
@@ -106,6 +107,9 @@ function App() {
             </button>
           </div>
         )}
+        <div>
+          <img id="imgLogo" src={loginImage} alt="Logo"></img>
+        </div>
       </div>
       <Router history={history}>
         <Switch>
