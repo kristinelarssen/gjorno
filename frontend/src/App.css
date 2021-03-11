@@ -25,3 +25,41 @@
   left: 50px;
   margin-top: 20px;
 }
+
+#navbar {
+  background-color: #3a5a40;
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+
+#user {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 300px;
+  padding: 10px;
+  height: 30px;
+}
+
+#btnLogOut {
+  font-weight: bolder;
+  color: #344e41;
+  background-color: #dad7cd;
+  border-radius: 6px;
+  border-color: #344e41;
+  border-width: 1px;
+  position: fixed;
+  right: 20px;
+  top: 40px;
+}
+
+.text {
+  color: white;
+}
+
+#username {
+  position: fixed;
+  top: 0;
+  right: 20px;
+}
