@@ -7,7 +7,7 @@ from rest_framework_jwt.settings import api_settings
 class ActivitySerializer(serializers.ModelSerializer):
     class Meta:
         model = Activity
-        fields = ["id", "title", "created", "description", "date"]
+        fields = ["id", "title", "created", "description", "date", "genre"]
 
 
 class UserSerializer(serializers.ModelSerializer):

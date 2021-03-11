@@ -7,6 +7,17 @@ class Activity(models.Model):
     description = models.TextField(default="")
     date = models.DateTimeField()
 
+    class ActivityGenre(models.TextChoices):
+        ANNET = 'Annet'
+        TUR = 'Spasertur'
+        LOP = 'Løping'
+
+    genre = models.CharField(
+        max_length=10, choices=ActivityGenre.choices,
+        default=ActivityGenre.ANNET, 
+    )
+
+
     class Meta:
         verbose_name_plural = "Activities"
 

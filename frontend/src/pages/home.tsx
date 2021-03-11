@@ -4,6 +4,7 @@ import ActivityList from "../components/ActivityList";
 import Navbar from "../components/Navbar";
 import NewActivity from "../components/NewActivity";
 import IActivity from "../interfaces/activity";
+import ActivityFilter from "../components/ActivityFilter";
 import "./../App.css";
 
 function Home() {
@@ -56,6 +57,7 @@ function Home() {
         >
           OPPRETT NY AKTIVITET
         </button>
+        <ActivityFilter />
       </header>
       <div id="activities">
         <ActivityList activities={activities} />

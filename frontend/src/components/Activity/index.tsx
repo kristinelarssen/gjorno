@@ -8,6 +8,7 @@ const Activity: React.FC<IActivity> = ({
   created,
   description,
   date,
+  genre,
 }) => {
   return (
     <div key={id} className="box">
@@ -15,6 +16,7 @@ const Activity: React.FC<IActivity> = ({
       <p id ="opprettet">Opprettet: {created}</p>
       <p>{description}</p>
       <p id="dato">Dato og tidspunkt: {date}</p>
+      <p>{genre}</p>
     </div>
   );
 };

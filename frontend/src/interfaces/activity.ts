@@ -4,4 +4,5 @@ export default interface IActivity {
   created: Date | string;
   description: string;
   date: Date | string;
+  genre: string;
 }
