@@ -8,10 +8,6 @@ interface Props {
 }
 
 const ActivityList: React.FC<Props> = ({ activities }) => {
-
-
-  
-  console.log(activities.filter(item => item.genre === "Annet"))
   return (
     <div id="activities">
       {activities &&

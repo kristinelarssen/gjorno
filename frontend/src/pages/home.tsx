@@ -4,12 +4,12 @@ import ActivityList from "../components/ActivityList";
 import Navbar from "../components/Navbar";
 import NewActivity from "../components/NewActivity";
 import IActivity from "../interfaces/activity";
-import ActivityFilter from "../components/ActivityFilter";
 import "./../App.css";
 
 function Home() {
   const [popup, setPopup] = useState(false);
   const [activities, setActivities] = useState<IActivity[]>([]);
+  const [acfilter, setAcfilter] = useState("Alle");
 
   async function fetchData() {
     const config = {
@@ -45,6 +45,12 @@ function Home() {
     sendPostRequest();
   };
 
+  let activitiesToShow = activities
+
+    if (acfilter !== "Alle") {
+      activitiesToShow = activities.filter(item => item.genre === acfilter)
+    }
+
   return (
     <div className="App">
       <header>
@@ -57,10 +63,17 @@ function Home() {
         >
           OPPRETT NY AKTIVITET
         </button>
-        <ActivityFilter />
+        <select onChange={(event) => {
+          setAcfilter(event.target.value);
+        }}>
+            <option value="Alle">Alle</option>
+            <option value="Annet">Annet</option>
+            <option value="Spasertur">Spasertur</option>
+            <option value="Løping">Løping</option>
+        </select>
       </header>
       <div id="activities">
-        <ActivityList activities={activities} />
+        <ActivityList activities={activitiesToShow} />
       </div>
       <div>
         {popup ? (
