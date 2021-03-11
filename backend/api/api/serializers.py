@@ -1,19 +1,13 @@
 from rest_framework import serializers
-from .models import Activity
+from .models import Activity, UserProfile
 from django.contrib.auth.models import User
 from rest_framework_jwt.settings import api_settings
-
-
-class ActivitySerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Activity
-        fields = ["id", "title", "created", "description", "date"]
 
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ("username",)
+        fields = ("username", "email")
 
 
 class UserSerializerWithToken(serializers.ModelSerializer):
@@ -39,4 +33,20 @@ class UserSerializerWithToken(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ("token", "username", "password", "email")
+        fields = ("token", "username", "email", "password")
+
+
+class UserProfileSerializer(serializers.ModelSerializer):
+    user = UserSerializerWithToken()
+
+    class Meta:
+        model = UserProfile
+        fields = ("id", "user", "is_organization")
+
+
+class ActivitySerializer(serializers.ModelSerializer):
+    author = UserProfileSerializer()
+
+    class Meta:
+        model = Activity
+        fields = ["id", "title", "created", "description", "date", "author"]

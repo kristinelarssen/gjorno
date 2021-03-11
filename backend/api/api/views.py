@@ -5,8 +5,13 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
-from .models import Activity
-from .serializers import ActivitySerializer, UserSerializer, UserSerializerWithToken
+from .models import Activity, UserProfile
+from .serializers import (
+    ActivitySerializer,
+    UserProfileSerializer,
+    UserSerializer,
+    UserSerializerWithToken,
+)
 
 
 class ActivityViewSet(viewsets.ModelViewSet):
@@ -38,3 +43,9 @@ class UserList(APIView):
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+class UserProfileViewSet(viewsets.ModelViewSet):
+    queryset = UserProfile.objects.all()
+    serializer_class = UserProfileSerializer
+    permissions = [permissions.IsAuthenticatedOrReadOnly]

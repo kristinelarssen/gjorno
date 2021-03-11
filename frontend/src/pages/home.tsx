@@ -1,3 +1,4 @@
+import { request } from "https";
 import React, { useEffect, useState } from "react";
 import axios from "../axios";
 import ActivityList from "../components/ActivityList";
@@ -35,7 +36,7 @@ function Home() {
         },
       };
       try {
-        await axios.post(`activities/`, data, config);
+        await axios.post(`activities/`, { ...data }, config);
         fetchData();
       } catch (error) {
         console.error(error);
