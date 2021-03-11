@@ -45,11 +45,11 @@ function Home() {
     sendPostRequest();
   };
 
-  let activitiesToShow = activities
+  let activitiesToShow = activities;
 
-    if (acfilter !== "Alle") {
-      activitiesToShow = activities.filter(item => item.genre === acfilter)
-    }
+  if (acfilter !== "Alle") {
+    activitiesToShow = activities.filter((item) => item.genre === acfilter);
+  }
 
   return (
     <div className="App">
@@ -63,15 +63,22 @@ function Home() {
         >
           OPPRETT NY AKTIVITET
         </button>
-        <select onChange={(event) => {
-          setAcfilter(event.target.value);
-        }}>
-            <option value="Alle">Alle</option>
-            <option value="Annet">Annet</option>
-            <option value="Spasertur">Spasertur</option>
-            <option value="Løping">Løping</option>
-        </select>
       </header>
+      <div id="filterbox">
+        <label>Hvilke aktiviteter vil du se?</label>
+        <br />
+        <select
+          onChange={(event) => {
+            setAcfilter(event.target.value);
+          }}
+        >
+          <option value="Alle">Alle</option>
+          <option value="Annet">Annet</option>
+          <option value="Tur">Tur</option>
+          <option value="Løping">Løping</option>
+          <option value="Attraksjon">Attraksjon</option>
+        </select>
+      </div>
       <div id="activities">
         <ActivityList activities={activitiesToShow} />
       </div>

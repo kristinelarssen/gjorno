@@ -9,8 +9,9 @@ class Activity(models.Model):
 
     class ActivityGenre(models.TextChoices):
         ANNET = 'Annet'
-        TUR = 'Spasertur'
+        TUR = 'Tur'
         LOP = 'Løping'
+        ATTRAKSJON = "Attraksjon"
 
     genre = models.CharField(
         max_length=10, choices=ActivityGenre.choices,

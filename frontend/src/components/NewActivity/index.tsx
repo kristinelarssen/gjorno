@@ -7,7 +7,6 @@ interface Props {
   handleSubmit: (data: IActivity) => void;
 }
 
-
 const NewActivity: FC<Props> = ({ popup, handleSubmit }) => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
@@ -15,12 +14,12 @@ const NewActivity: FC<Props> = ({ popup, handleSubmit }) => {
   const [genre, setGenre] = useState("");
 
   const handleOnClick = () => {
-      const data = {
+    const data = {
       title: title,
       created: new Date(),
       description: description,
       date: new Date(date),
-      genre: genre
+      genre: genre,
     };
     handleSubmit(data);
     popup();
@@ -49,12 +48,19 @@ const NewActivity: FC<Props> = ({ popup, handleSubmit }) => {
         />
       </div>
       <br />
-       <div className="div">
+      <div className="div">
         <label className="label">Sjanger</label>
-        <select className="input" onChange={(event) => setGenre(event.target.value)}>
-            <option value="Annet">Annet</option>
-            <option value="Spasertur">Spasertur</option>
-            <option value="Løping">Løping</option>
+        <select
+          className="input"
+          onChange={(event) => setGenre(event.target.value)}
+        >
+          <option value="" selected disabled hidden>
+            Velg her
+          </option>
+          <option value="Annet">Annet</option>
+          <option value="Tur">Tur</option>
+          <option value="Løping">Løping</option>
+          <option value="Attraksjon">Attraksjon</option>
         </select>
       </div>
       <br />

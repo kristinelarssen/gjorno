@@ -2,17 +2,50 @@
   background-color: #a3b18a;
   padding: 10px;
   margin: 20px;
-  width: 200px;
-  height: 200px;
+  width: 220px;
+  height: 220px;
   border-radius: 20px;
   flex: auto;
 }
 
 #opprettet {
-  font-size: smaller;
-  color: #dad7cd;
+  font-size: x-small;
 }
 
 #dato {
-  font-size: smaller;
+  font-size: x-small;
+}
+
+.genrebox {
+  border-radius: 5px;
+  width: 100px;
+  margin: auto;
+}
+
+#annetBox {
+  background-color: #f2d773;
+  color: black;
+}
+
+#lopingBox {
+  background-color: #432b82;
+  color: white;
+}
+
+#turBox {
+  background-color: #e3549b;
+  color: white;
+}
+
+#attraksjonBox {
+  background-color: #7b9e99;
+}
+
+#icon {
+  height: 25px;
+  right: 200px;
+}
+
+.imgRight {
+  text-align: right;
 }

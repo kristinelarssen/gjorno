@@ -1,6 +1,6 @@
 .App {
   text-align: center;
-  margin-top: 120px;
+  margin-top: 90px;
 }
 
 #activities {
@@ -24,4 +24,8 @@
   position: fixed;
   left: 50px;
   margin-top: 20px;
+}
+
+#filterbox {
+  margin: 20px;
 }
