@@ -15,6 +15,12 @@ const SignupForm: React.FC<Props> = ({ handleSignup }) => {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [isOrganization, setCheckbox] = useState(false);
+  console.log(isOrganization);
+
+  const handleCheckboxChange = (Boolean: boolean) => {
+    setCheckbox(Boolean);
+  };
 
   return (
     <div className="base-container">
@@ -25,6 +31,26 @@ const SignupForm: React.FC<Props> = ({ handleSignup }) => {
             <img id="login-image" src={loginImage} alt="login" />
           </div>
           <div className="form">
+            <div id="float-container">
+              <div id="private" className="float-child">
+                <input
+                  type="radio"
+                  name="radiobutton"
+                  value="private"
+                  onChange={(e) => handleCheckboxChange(false)}
+                ></input>
+                <label htmlFor="private">Privat person</label>
+              </div>
+              <div id="organization" className="float-child">
+                <input
+                  type="radio"
+                  name="radiobutton"
+                  value="organization"
+                  onChange={(e) => handleCheckboxChange(true)}
+                ></input>
+                <label htmlFor="organization">Organisasjon</label>
+              </div>
+            </div>
             <div className="form-group">
               <label htmlFor="username" className="loginLabel">
                 Brukernavn
@@ -72,6 +98,7 @@ const SignupForm: React.FC<Props> = ({ handleSignup }) => {
                 username: username,
                 email: email,
                 password: password,
+                isOrganization: isOrganization,
               });
             }}
           >
