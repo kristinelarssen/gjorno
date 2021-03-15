@@ -102,4 +102,4 @@ Under finner du en liste med alle brukerhistoriene våre.
 |  K  | Statistikkside  | Som en admin ønsker jeg en statistikkside slik at jeg kan ha oversikt over hvilke aktiviteter som er mest populære  |
 |  L  | Deltakere på private aktiviteter  | Brukere kan organisere turer med et spesifisert antall deltakere.  |
 |  M  | Chat-funksjon  | Som bruker av applikasjonen, ønsker jeg å kunne kommunisere direkte med organisasjoner,slik at jeg kan melde meg på aktiviteter eller få mer informasjon om interessante aktiviteter.  |
-</div>
+{: .Tabell}
