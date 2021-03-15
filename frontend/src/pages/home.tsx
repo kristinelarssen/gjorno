@@ -54,7 +54,6 @@ function Home() {
   return (
     <div className="App">
       <header>
-        <Navbar />
         <button
           id="btnNewAct"
           onClick={() => {
