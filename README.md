@@ -85,6 +85,7 @@ Under finner du en liste med alle brukerhistoriene våre.
 .Tabell tr:nth-child(4) {background : green; }
 .Tabell tr:nth-child(5) {background : green; }    
 </style>
+<div class = "Tabell">
 
 | Id  | Navn                             | Brukerhistorie                                                                                                                                                                        |
 | --- | -------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -102,4 +103,4 @@ Under finner du en liste med alle brukerhistoriene våre.
 | L   | Deltakere på private aktiviteter | Brukere kan organisere turer med et spesifisert antall deltakere.                                                                                                                     |
 | M   | Chat-funksjon                    | Som bruker av applikasjonen, ønsker jeg å kunne kommunisere direkte med organisasjoner,slik at jeg kan melde meg på aktiviteter eller få mer informasjon om interessante aktiviteter. |
 
-{: .Tabell}
+</div>
