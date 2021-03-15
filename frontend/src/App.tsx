@@ -3,10 +3,12 @@ import { Redirect, Route, Router, Switch } from "react-router-dom";
 import "./App.css";
 import axios from "./axios";
 import LoginForm from "./components/LoginForm";
+import Navbar from "./components/Navbar";
 import SignupForm from "./components/SignupForm";
 import history from "./history";
 import IUserLogin from "./interfaces/userlogin";
 import Home from "./pages/home";
+import loginImage from "./images/login-image.png";
 
 function App() {
   const [username, setUsername] = useState("");
@@ -92,12 +94,23 @@ function App() {
 
   return (
     <div className="App">
-      {isAuthenticated && (
+      <div id="navbar">
+        <h1 className="text">GjørNo'</h1>
+
+        {isAuthenticated && (
+          <div id="user">
+            <p className="text" id="username">
+              Hello {username}
+            </p>
+            <button id="btnLogOut" onClick={handleLogOut}>
+              Logg ut
+            </button>
+          </div>
+        )}
         <div>
-          <h3>Hello {username}</h3>
-          <button onClick={handleLogOut}>Logg ut</button>
+          <img id="imgLogo" src={loginImage} alt="Logo"></img>
         </div>
-      )}
+      </div>
       <Router history={history}>
         <Switch>
           <Route path={"/home"} exact component={Home} />
