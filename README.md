@@ -1,5 +1,6 @@
 # GjørNo
-GjørNo' er en nettside hvor man kan bli inspirert, arrangere og melde seg på ulike aktiviteter. Her kan privatpersoner blant annet legge ut poster av aktiviteter vedkommende har gjennomført, slik at andre kan inspirers til å gjøre det samme. Videre kan organisasjoner legge ut aktiviteter som andre brukere kan melde seg på. 
+
+GjørNo' er en nettside hvor man kan bli inspirert, arrangere og melde seg på ulike aktiviteter. Her kan privatpersoner blant annet legge ut poster av aktiviteter vedkommende har gjennomført, slik at andre kan inspirers til å gjøre det samme. Videre kan organisasjoner legge ut aktiviteter som andre brukere kan melde seg på.
 
 <br>
 
@@ -14,18 +15,25 @@ er bygget på Django REST framework med sqlite3 som DB.
 <br>
 
 ## Hvordan kjøre nettsiden:
+
 ### 1) Backend
+
 Gå inn i gjorno-mappen
+
 ```bash
 source venv/bin/activate
 ```
+
 Gå inn i backend-mappen
+
 ```bash
 python3 manage.py runserver
 ```
 
 ### 2) Frontend
+
 Gå inn i frontend-mappen
+
 ```bash
 yarn start
 ```
@@ -33,7 +41,8 @@ yarn start
 <br>
 
 ## Mappestruktur
-Vi har valgt å skille frontend og backend i egne mapper. 
+
+Vi har valgt å skille frontend og backend i egne mapper.
 
     gjorno/
         frontend/
@@ -65,8 +74,19 @@ Vi har valgt å skille frontend og backend i egne mapper.
 <br>
 
 ## Brukerhistorier
+
 Under finner du en liste med alle brukerhistoriene våre.
 
+<style>
+
+.Tabell tr:nth-child(1) {background : green; }
+.Tabell tr:nth-child(2) {background : green; }
+.Tabell tr:nth-child(3) {background : green; }
+.Tabell tr:nth-child(4) {background : green; }
+.Tabell tr:nth-child(5) {background : green; }    
+</style>
+
+<div class="Tabell">
 | Id  | Navn | Brukerhistorie | 
 | --- | ------------- | ------------------------------------- |
 |  A  | Se aktivitet  | Som en bruker, ønsker jeg å kunne se aktiviteter, slik at jeg kan gjennomføre disse  |
@@ -82,3 +102,4 @@ Under finner du en liste med alle brukerhistoriene våre.
 |  K  | Statistikkside  | Som en admin ønsker jeg en statistikkside slik at jeg kan ha oversikt over hvilke aktiviteter som er mest populære  |
 |  L  | Deltakere på private aktiviteter  | Brukere kan organisere turer med et spesifisert antall deltakere.  |
 |  M  | Chat-funksjon  | Som bruker av applikasjonen, ønsker jeg å kunne kommunisere direkte med organisasjoner,slik at jeg kan melde meg på aktiviteter eller få mer informasjon om interessante aktiviteter.  |
+</div>
