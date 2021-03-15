@@ -86,20 +86,20 @@ Under finner du en liste med alle brukerhistoriene våre.
 .Tabell tr:nth-child(5) {background : green; }    
 </style>
 
-<div class="Tabell">
-| Id  | Navn | Brukerhistorie | 
-| --- | ------------- | ------------------------------------- |
-|  A  | Se aktivitet  | Som en bruker, ønsker jeg å kunne se aktiviteter, slik at jeg kan gjennomføre disse  |
-|  B  | Legge til aktivitet  | Som en bruker ønsker jeg å kunne legge ut aktiviteter offentlig slik at andre kan bli inspirerte til å gjøre det samme  |
-|  C  | Lag profil  | Som en bruker/organisasjon ønsker jeg å kunne lage en egen profil, slik at jeg kan delta/få innsyn på plattformen  |
-|  D  | Innloggingssystem | Som en bruker/organisasjon ønsker jeg å kunne logge inn i egen profil, slik at jeg får oversikt over mine aktiviteter  |
-|  E  | Opprette organiserte aktiviteter  | Som en organisasjon ønsker jeg å kunne opprette organiserte aktiviteter slik at andre brukere kan melde seg på  |
-|  F  | Melde seg på aktiviteter  | Som en bruker ønsker jeg å kunne melde meg på aktiviteter i regi av organisasjoner slik at jeg kan delta på aktuelle turer  |
-|  G  | Markere aktiviteter  | Som en bruker/organisasjon, ønsker jeg å kunne markere aktiviteter slik at de blir en del av en aktivitetslogg  |
-|  H  | Skille aktiviteter  | Som en bruker ønsker jeg å kunne skille mellom aktiviteter lagt ut av organisasjoner og andre brukere, slik at jeg kan få opp det jeg ønsker å se  |
-|  I  | Filtrere/sortere aktiviteter  | Som en bruker, ønsker jeg å kunne filtrere/sortere aktiviteter, slik at jeg kan finne de turene jeg har interesse for  |
-|  J  | Moderator-tilgang  | Som en admin, ønsker jeg å kunne slette, opprette og moderere aktiviteter slik at aktivitetene er kvalitetssikret  |
-|  K  | Statistikkside  | Som en admin ønsker jeg en statistikkside slik at jeg kan ha oversikt over hvilke aktiviteter som er mest populære  |
-|  L  | Deltakere på private aktiviteter  | Brukere kan organisere turer med et spesifisert antall deltakere.  |
-|  M  | Chat-funksjon  | Som bruker av applikasjonen, ønsker jeg å kunne kommunisere direkte med organisasjoner,slik at jeg kan melde meg på aktiviteter eller få mer informasjon om interessante aktiviteter.  |
+| Id  | Navn                             | Brukerhistorie                                                                                                                                                                        |
+| --- | -------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| A   | Se aktivitet                     | Som en bruker, ønsker jeg å kunne se aktiviteter, slik at jeg kan gjennomføre disse                                                                                                   |
+| B   | Legge til aktivitet              | Som en bruker ønsker jeg å kunne legge ut aktiviteter offentlig slik at andre kan bli inspirerte til å gjøre det samme                                                                |
+| C   | Lag profil                       | Som en bruker/organisasjon ønsker jeg å kunne lage en egen profil, slik at jeg kan delta/få innsyn på plattformen                                                                     |
+| D   | Innloggingssystem                | Som en bruker/organisasjon ønsker jeg å kunne logge inn i egen profil, slik at jeg får oversikt over mine aktiviteter                                                                 |
+| E   | Opprette organiserte aktiviteter | Som en organisasjon ønsker jeg å kunne opprette organiserte aktiviteter slik at andre brukere kan melde seg på                                                                        |
+| F   | Melde seg på aktiviteter         | Som en bruker ønsker jeg å kunne melde meg på aktiviteter i regi av organisasjoner slik at jeg kan delta på aktuelle turer                                                            |
+| G   | Markere aktiviteter              | Som en bruker/organisasjon, ønsker jeg å kunne markere aktiviteter slik at de blir en del av en aktivitetslogg                                                                        |
+| H   | Skille aktiviteter               | Som en bruker ønsker jeg å kunne skille mellom aktiviteter lagt ut av organisasjoner og andre brukere, slik at jeg kan få opp det jeg ønsker å se                                     |
+| I   | Filtrere/sortere aktiviteter     | Som en bruker, ønsker jeg å kunne filtrere/sortere aktiviteter, slik at jeg kan finne de turene jeg har interesse for                                                                 |
+| J   | Moderator-tilgang                | Som en admin, ønsker jeg å kunne slette, opprette og moderere aktiviteter slik at aktivitetene er kvalitetssikret                                                                     |
+| K   | Statistikkside                   | Som en admin ønsker jeg en statistikkside slik at jeg kan ha oversikt over hvilke aktiviteter som er mest populære                                                                    |
+| L   | Deltakere på private aktiviteter | Brukere kan organisere turer med et spesifisert antall deltakere.                                                                                                                     |
+| M   | Chat-funksjon                    | Som bruker av applikasjonen, ønsker jeg å kunne kommunisere direkte med organisasjoner,slik at jeg kan melde meg på aktiviteter eller få mer informasjon om interessante aktiviteter. |
+
 {: .Tabell}
