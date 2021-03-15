@@ -1,6 +1,6 @@
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
-from .views import UserProfileViewSet, current_user, UserList, ActivityViewSet
+from .views import UserProfileViewSet, UserList, ActivityViewSet
 from django.contrib import admin
 from rest_framework_jwt.views import obtain_jwt_token
 
@@ -15,5 +15,4 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path("token-auth/", obtain_jwt_token),
     path("users/", UserList.as_view()),
-    path("current_user/", current_user),
 ]

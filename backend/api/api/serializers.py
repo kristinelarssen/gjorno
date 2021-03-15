@@ -7,13 +7,22 @@ from rest_framework_jwt.settings import api_settings
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ("username", "email")
+        fields = ["id", "username", "email"]
+
+
+class UserProfileSerializer(serializers.ModelSerializer):
+    user = UserSerializer()
+
+    class Meta:
+        model = UserProfile
+        fields = ["id", "user", "is_organization"]
 
 
 class UserSerializerWithToken(serializers.ModelSerializer):
 
     token = serializers.SerializerMethodField()
     password = serializers.CharField(write_only=True)
+    is_organization = serializers.BooleanField(default=False)
 
     def get_token(self, obj):
         jwt_payload_handler = api_settings.JWT_PAYLOAD_HANDLER
@@ -24,24 +33,18 @@ class UserSerializerWithToken(serializers.ModelSerializer):
         return token
 
     def create(self, validated_data):
+        is_organization = validated_data.pop("is_organization")
         password = validated_data.pop("password", None)
-        instance = self.Meta.model(**validated_data)
+        instance = User.objects.create(**validated_data)
         if password is not None:
             instance.set_password(password)
         instance.save()
+        UserProfile.objects.create(user=instance, is_organization=is_organization)
         return instance
 
     class Meta:
         model = User
-        fields = ("token", "username", "email", "password")
-
-
-class UserProfileSerializer(serializers.ModelSerializer):
-    user = UserSerializerWithToken()
-
-    class Meta:
-        model = UserProfile
-        fields = ("id", "user", "is_organization")
+        fields = ("token", "username", "email", "password", "is_organization")
 
 
 class ActivitySerializer(serializers.ModelSerializer):

@@ -72,6 +72,7 @@ const SignupForm: React.FC<Props> = ({ handleSignup }) => {
                 username: username,
                 email: email,
                 password: password,
+                isOrganization: true,
               });
             }}
           >
