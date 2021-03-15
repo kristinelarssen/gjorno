@@ -11,6 +11,7 @@ const NewActivity: FC<Props> = ({ popup, handleSubmit }) => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [date, setDate] = useState("");
+  const [genre, setGenre] = useState("");
 
   const handleOnClick = () => {
     const data = {
@@ -18,6 +19,7 @@ const NewActivity: FC<Props> = ({ popup, handleSubmit }) => {
       created: new Date(),
       description: description,
       date: new Date(date),
+      genre: genre,
     };
     handleSubmit(data);
     popup();
@@ -46,6 +48,22 @@ const NewActivity: FC<Props> = ({ popup, handleSubmit }) => {
         />
       </div>
       <br />
+      <div className="div">
+        <label className="label">Sjanger</label>
+        <select
+          className="input"
+          onChange={(event) => setGenre(event.target.value)}
+        >
+          <option value="" selected disabled hidden>
+            Velg her
+          </option>
+          <option value="Annet">Annet</option>
+          <option value="Tur">Tur</option>
+          <option value="Løping">Løping</option>
+          <option value="Attraksjon">Attraksjon</option>
+        </select>
+      </div>
+      <br />
       <div className="div" id="divDato">
         <label className="label">Dato:</label>
         <input
@@ -56,6 +74,7 @@ const NewActivity: FC<Props> = ({ popup, handleSubmit }) => {
           onChange={(event) => setDate(event.target.value)}
         />
       </div>
+      <br />
       <button className="btn" id="btnExit" onClick={popup}>
         X
       </button>

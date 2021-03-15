@@ -9,6 +9,7 @@ import "./../App.css";
 function Home() {
   const [popup, setPopup] = useState(false);
   const [activities, setActivities] = useState<IActivity[]>([]);
+  const [acfilter, setAcfilter] = useState("Alle");
 
   async function fetchData() {
     const config = {
@@ -44,6 +45,12 @@ function Home() {
     sendPostRequest();
   };
 
+  let activitiesToShow = activities;
+
+  if (acfilter !== "Alle") {
+    activitiesToShow = activities.filter((item) => item.genre === acfilter);
+  }
+
   return (
     <div className="App">
       <header>
@@ -56,8 +63,23 @@ function Home() {
           OPPRETT NY AKTIVITET
         </button>
       </header>
+      <div id="filterbox">
+        <label>Hvilke aktiviteter vil du se?</label>
+        <br />
+        <select
+          onChange={(event) => {
+            setAcfilter(event.target.value);
+          }}
+        >
+          <option value="Alle">Alle</option>
+          <option value="Annet">Annet</option>
+          <option value="Tur">Tur</option>
+          <option value="Løping">Løping</option>
+          <option value="Attraksjon">Attraksjon</option>
+        </select>
+      </div>
       <div id="activities">
-        <ActivityList activities={activities} />
+        <ActivityList activities={activitiesToShow} />
       </div>
       <div>
         {popup ? (
