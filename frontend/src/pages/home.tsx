@@ -51,7 +51,7 @@ function Home() {
           if (res.data[0]) {
             setAuthor({
               id: res.data[0].id,
-              isOrganization: res.data[0].is_organization,
+              is_organization: res.data[0].is_organization,
               user: res.data[0].user.id,
             });
           }

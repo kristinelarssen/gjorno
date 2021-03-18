@@ -14,7 +14,7 @@ function App() {
   const [user, setUser] = useState<IUser>({
     username: "",
     email: "",
-    isOrganization: false,
+    is_organization: false,
   });
   const [isAuthenticated, setAuthenticated] = useState<boolean>(
     localStorage.getItem("token") ? true : false
@@ -68,7 +68,7 @@ function App() {
 
   const handleLogOut = () => {
     localStorage.removeItem("token");
-    setUser({ username: "", email: "", isOrganization: false });
+    setUser({ username: "", email: "", is_organization: false });
     setAuthenticated(false);
     history.push("/");
   };
@@ -85,7 +85,7 @@ function App() {
             setUser({
               username: res.data[0].user.username,
               email: res.data[0].user.email,
-              isOrganization: res.data[0].is_organization,
+              is_organization: res.data[0].is_organization,
             });
         });
     } catch (error) {
