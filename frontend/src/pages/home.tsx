@@ -1,6 +1,4 @@
-import { setUncaughtExceptionCaptureCallback } from "process";
 import React, { useEffect, useState } from "react";
-import { reduceEachTrailingCommentRange } from "typescript";
 import axios from "../axios";
 import ActivityList from "../components/ActivityList";
 import Navbar from "../components/Navbar";
@@ -32,7 +30,7 @@ function Home() {
         console.log(author);
         await axios.post(
           `activities/`,
-          { ...data, author: author },
+          { ...data, author: author?.id },
           { headers: { Authorization: `JWT ${localStorage.getItem("token")}` } }
         );
         fetchData();
@@ -54,11 +52,7 @@ function Home() {
             setAuthor({
               id: res.data[0].id,
               isOrganization: res.data[0].is_organization,
-              user: {
-                id: res.data[0].user.id,
-                username: res.data[0].user.username,
-                email: res.data[0].user.email,
-              },
+              user: res.data[0].user.id,
             });
           }
         });

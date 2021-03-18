@@ -20,6 +20,7 @@ const Activity: React.FC<IActivity> = ({
       <p>
         {author?.user.username ? `Opprettet av: ${author.user.username}` : null}
       </p>
+      <p>{author?.isOrganization && <button>Meld deg på!</button>}</p>
     </div>
   );
 };
