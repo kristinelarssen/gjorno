@@ -10,6 +10,7 @@ function Home() {
   const [popup, setPopup] = useState(false);
   const [activities, setActivities] = useState<IActivity[]>([]);
   const [acfilter, setAcfilter] = useState("Alle");
+  const [allAcFilter, setAllAcFilter] = useState("Alle");
 
   async function fetchData() {
     const config = {
@@ -63,20 +64,35 @@ function Home() {
           OPPRETT NY AKTIVITET
         </button>
       </header>
-      <div id="filterbox">
-        <label>Hvilke aktiviteter vil du se?</label>
-        <br />
-        <select
-          onChange={(event) => {
-            setAcfilter(event.target.value);
-          }}
-        >
-          <option value="Alle">Alle</option>
-          <option value="Annet">Annet</option>
-          <option value="Tur">Tur</option>
-          <option value="Løping">Løping</option>
-          <option value="Attraksjon">Attraksjon</option>
-        </select>
+
+      <div id="filter-container">
+        <div id="filterbox">
+          <label>Hvem sine aktiviteter vil du se?</label>
+          <br />
+          <select
+            onChange={(event) => {
+              setAllAcFilter(event.target.value);
+            }}
+          >
+            <option value="Alle">Alle</option>
+            <option value="Mine">Mine</option>
+          </select>
+        </div>
+        <div id="filterbox">
+          <label>Hvilke aktiviteter vil du se?</label>
+          <br />
+          <select
+            onChange={(event) => {
+              setAcfilter(event.target.value);
+            }}
+          >
+            <option value="Alle">Alle</option>
+            <option value="Annet">Annet</option>
+            <option value="Tur">Tur</option>
+            <option value="Løping">Løping</option>
+            <option value="Attraksjon">Attraksjon</option>
+          </select>
+        </div>
       </div>
       <div id="activities">
         <ActivityList activities={activitiesToShow} />

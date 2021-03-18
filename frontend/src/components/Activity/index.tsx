@@ -22,9 +22,9 @@ const Activity: React.FC<IActivity> = ({
             <img id="icon" src={annetImg} alt="login" />
           </div>
           <h3>{title}</h3>
-          <p id="opprettet">Opprettet: {created}</p>
           <p>{description}</p>
           <p id="dato">Dato og tidspunkt: {date}</p>
+          <p id="opprettet">Opprettet: {created}</p>
         </div>
       )}
       {genre === "Tur" && (
@@ -33,9 +33,9 @@ const Activity: React.FC<IActivity> = ({
             <img id="icon" src={turImg} alt="login" />
           </div>
           <h3>{title}</h3>
-          <p id="opprettet">Opprettet: {created}</p>
           <p>{description}</p>
           <p id="dato">Dato og tidspunkt: {date}</p>
+          <p id="opprettet">Opprettet: {created}</p>
         </div>
       )}
       {genre === "Løping" && (
@@ -44,9 +44,9 @@ const Activity: React.FC<IActivity> = ({
             <img id="icon" src={lopingImg} alt="login" />
           </div>
           <h3>{title}</h3>
-          <p id="opprettet">Opprettet: {created}</p>
           <p>{description}</p>
           <p id="dato">Dato og tidspunkt: {date}</p>
+          <p id="opprettet">Opprettet: {created}</p>
         </div>
       )}
       {genre === "Attraksjon" && (
@@ -55,9 +55,9 @@ const Activity: React.FC<IActivity> = ({
             <img id="icon" src={attImg} alt="login" />
           </div>
           <h3>{title}</h3>
-          <p id="opprettet">Opprettet: {created}</p>
           <p>{description}</p>
           <p id="dato">Dato og tidspunkt: {date}</p>
+          <p id="opprettet">Opprettet: {created}</p>
         </div>
       )}
     </>
