@@ -12,6 +12,7 @@ const Activity: React.FC<IActivity> = ({
   created,
   description,
   date,
+  author,
   genre,
 }) => {
   return (
@@ -25,6 +26,13 @@ const Activity: React.FC<IActivity> = ({
           <p id="opprettet">Opprettet: {created}</p>
           <p>{description}</p>
           <p id="dato">Dato og tidspunkt: {date}</p>
+          <p>{author?.isOrganization ? "Organisasjon" : "Privatperson"}</p>
+          <p>
+            {author?.user.username
+              ? `Opprettet av: ${author.user.username}`
+              : null}
+          </p>
+          <p>{author?.isOrganization && <button>Meld deg på!</button>}</p>
         </div>
       )}
       {genre === "Tur" && (
@@ -36,6 +44,13 @@ const Activity: React.FC<IActivity> = ({
           <p id="opprettet">Opprettet: {created}</p>
           <p>{description}</p>
           <p id="dato">Dato og tidspunkt: {date}</p>
+          <p>{author?.isOrganization ? "Organisasjon" : "Privatperson"}</p>
+          <p>
+            {author?.user.username
+              ? `Opprettet av: ${author.user.username}`
+              : null}
+          </p>
+          <p>{author?.isOrganization && <button>Meld deg på!</button>}</p>
         </div>
       )}
       {genre === "Løping" && (
@@ -47,6 +62,13 @@ const Activity: React.FC<IActivity> = ({
           <p id="opprettet">Opprettet: {created}</p>
           <p>{description}</p>
           <p id="dato">Dato og tidspunkt: {date}</p>
+          <p>{author?.isOrganization ? "Organisasjon" : "Privatperson"}</p>
+          <p>
+            {author?.user.username
+              ? `Opprettet av: ${author.user.username}`
+              : null}
+          </p>
+          <p>{author?.isOrganization && <button>Meld deg på!</button>}</p>
         </div>
       )}
       {genre === "Attraksjon" && (
@@ -58,6 +80,13 @@ const Activity: React.FC<IActivity> = ({
           <p id="opprettet">Opprettet: {created}</p>
           <p>{description}</p>
           <p id="dato">Dato og tidspunkt: {date}</p>
+          <p>{author?.isOrganization ? "Organisasjon" : "Privatperson"}</p>
+          <p>
+            {author?.user.username
+              ? `Opprettet av: ${author.user.username}`
+              : null}
+          </p>
+          <p>{author?.isOrganization && <button>Meld deg på!</button>}</p>
         </div>
       )}
     </>
