@@ -3,13 +3,12 @@ import { Redirect, Route, Router, Switch } from "react-router-dom";
 import "./App.css";
 import axios from "./axios";
 import LoginForm from "./components/LoginForm";
-import Navbar from "./components/Navbar";
 import SignupForm from "./components/SignupForm";
 import history from "./history";
+import loginImage from "./images/login-image.png";
 import IUser from "./interfaces/user";
 import IUserLogin from "./interfaces/userlogin";
 import Home from "./pages/home";
-import loginImage from "./images/login-image.png";
 
 function App() {
   const [user, setUser] = useState<IUser>({
@@ -110,7 +109,7 @@ function App() {
         {isAuthenticated && (
           <div id="user">
             <p className="text" id="username">
-              Hello {username}
+              Hello {user.username}
             </p>
             <button id="btnLogOut" onClick={handleLogOut}>
               Logg ut
@@ -118,9 +117,7 @@ function App() {
           </div>
         )}
         <div>
-
           <img id="imgLogo" src={loginImage} alt="Logo"></img>
-
         </div>
       </div>
       <Router history={history}>

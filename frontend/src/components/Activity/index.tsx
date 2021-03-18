@@ -1,10 +1,10 @@
 import React from "react";
+import annetImg from "../../images/annet.png";
+import attImg from "../../images/attraksjon.png";
+import lopingImg from "../../images/loping.png";
+import turImg from "../../images/tur.png";
 import IActivity from "../../interfaces/activity";
 import "../../styles/activity.css";
-import annetImg from "../../images/annet.png";
-import turImg from "../../images/tur.png";
-import lopingImg from "../../images/loping.png";
-import attImg from "../../images/attraksjon.png";
 
 const Activity: React.FC<IActivity> = ({
   id,
@@ -12,7 +12,7 @@ const Activity: React.FC<IActivity> = ({
   created,
   description,
   date,
-
+  author,
   genre,
 }) => {
   return (
@@ -26,6 +26,12 @@ const Activity: React.FC<IActivity> = ({
           <p>{description}</p>
           <p id="dato">Dato og tidspunkt: {date}</p>
           <p id="opprettet">Opprettet: {created}</p>
+          <p>{author?.isOrganization ? "Organisasjon" : "Privatperson"}</p>
+          <p>
+            {author?.user.username
+              ? `Opprettet av: ${author.user.username}`
+              : null}
+          </p>
         </div>
       )}
       {genre === "Tur" && (
@@ -37,6 +43,12 @@ const Activity: React.FC<IActivity> = ({
           <p>{description}</p>
           <p id="dato">Dato og tidspunkt: {date}</p>
           <p id="opprettet">Opprettet: {created}</p>
+          <p>{author?.isOrganization ? "Organisasjon" : "Privatperson"}</p>
+          <p>
+            {author?.user.username
+              ? `Opprettet av: ${author.user.username}`
+              : null}
+          </p>
         </div>
       )}
       {genre === "Løping" && (
@@ -48,6 +60,12 @@ const Activity: React.FC<IActivity> = ({
           <p>{description}</p>
           <p id="dato">Dato og tidspunkt: {date}</p>
           <p id="opprettet">Opprettet: {created}</p>
+          <p>{author?.isOrganization ? "Organisasjon" : "Privatperson"}</p>
+          <p>
+            {author?.user.username
+              ? `Opprettet av: ${author.user.username}`
+              : null}
+          </p>
         </div>
       )}
       {genre === "Attraksjon" && (
@@ -59,24 +77,15 @@ const Activity: React.FC<IActivity> = ({
           <p>{description}</p>
           <p id="dato">Dato og tidspunkt: {date}</p>
           <p id="opprettet">Opprettet: {created}</p>
+          <p>{author?.isOrganization ? "Organisasjon" : "Privatperson"}</p>
+          <p>
+            {author?.user.username
+              ? `Opprettet av: ${author.user.username}`
+              : null}
+          </p>
         </div>
       )}
     </>
-
-  author,
-}) => {
-  return (
-    <div key={id} className="box">
-      <h3>{title}</h3>
-      <p id="opprettet">Opprettet: {created}</p>
-      <p>{description}</p>
-      <p id="dato">Dato og tidspunkt: {date}</p>
-      <p>{author?.isOrganization ? "Organisasjon" : "Privatperson"}</p>
-      <p>
-        {author?.user.username ? `Opprettet av: ${author.user.username}` : null}
-      </p>
-    </div>
-
   );
 };
 

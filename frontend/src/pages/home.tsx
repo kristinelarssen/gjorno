@@ -1,9 +1,6 @@
-import { setUncaughtExceptionCaptureCallback } from "process";
 import React, { useEffect, useState } from "react";
-import { reduceEachTrailingCommentRange } from "typescript";
 import axios from "../axios";
 import ActivityList from "../components/ActivityList";
-import Navbar from "../components/Navbar";
 import NewActivity from "../components/NewActivity";
 import IActivity from "../interfaces/activity";
 import IAuthor from "../interfaces/author";
@@ -17,7 +14,6 @@ function Home() {
   const [allAcFilter, setAllAcFilter] = useState("Alle");
 
   const [author, setAuthor] = useState<IAuthor>();
-
 
   async function fetchData() {
     const request = await axios.get("activities/", {
@@ -47,7 +43,6 @@ function Home() {
     };
     sendPostRequest();
   };
-
 
   let activitiesToShow = activities;
 
@@ -85,6 +80,13 @@ function Home() {
 
   console.log(author);
 
+  let showMyActivites = activities;
+
+  if (allAcFilter !== "Alle") {
+    showMyActivites = activities.filter(
+      (item) => item.author?.user.username === "johanne"
+    );
+  }
 
   return (
     <div className="App">
