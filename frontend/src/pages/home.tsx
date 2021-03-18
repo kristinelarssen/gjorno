@@ -49,6 +49,11 @@ function Home() {
   if (acfilter !== "Alle") {
     activitiesToShow = activities.filter((item) => item.genre === acfilter);
   }
+  if (allAcFilter !== "Alle") {
+    activitiesToShow = activities.filter(
+      (item) => item.author?.user.username === "johanne"
+    );
+  }
 
   const getAuthor = async () => {
     try {
@@ -75,15 +80,6 @@ function Home() {
   }, []);
 
   console.log(author);
-  let activitiesToShow = activities;
-
-  let showMyActivites = activities;
-
-  if (allAcFilter !== "Alle") {
-    showMyActivites = activities.filter(
-      (item) => item.author?.user.username === "johanne"
-    );
-  }
 
   return (
     <div className="App">
