@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { Redirect, Route, Router, Switch } from "react-router-dom";
 import "./App.css";
 import axios from "./axios";
@@ -6,12 +6,17 @@ import LoginForm from "./components/LoginForm";
 import Navbar from "./components/Navbar";
 import SignupForm from "./components/SignupForm";
 import history from "./history";
+import IUser from "./interfaces/user";
 import IUserLogin from "./interfaces/userlogin";
 import Home from "./pages/home";
 import loginImage from "./images/login-image.png";
 
 function App() {
-  const [username, setUsername] = useState("");
+  const [user, setUser] = useState<IUser>({
+    username: "",
+    email: "",
+    isOrganization: false,
+  });
   const [isAuthenticated, setAuthenticated] = useState<boolean>(
     localStorage.getItem("token") ? true : false
   );
@@ -21,76 +26,81 @@ function App() {
     data: IUserLogin
   ) => {
     event.preventDefault();
-    const config = {
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `JWT ${localStorage.getItem("token")}`,
-      },
-    };
     const sendLoginRequest = async () => {
       try {
-        await axios.post("token-auth/", data, config).then((res) => {
-          localStorage.setItem("token", res.data.token);
-          setAuthenticated(true);
-          setUsername(res.data.user.username);
-          history.push("/home");
-        });
+        await axios
+          .post("token-auth/", data, {
+            headers: { Authorization: `JWT ${localStorage.getItem("token")}` },
+          })
+          .then((res) => {
+            localStorage.setItem("token", res.data.token);
+            setAuthenticated(true);
+            history.push("/home");
+          });
       } catch (error) {
         console.log(error);
       }
     };
     sendLoginRequest();
+    getCurrentUser();
   };
 
   const handleSignup = (
     event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
-    data: IUserLogin
+    data: IUser
   ) => {
     event.preventDefault();
-    const config = {
-      headers: {
-        "Content-Type": "application/json",
-      },
-    };
     const sendSignupRequest = async () => {
       try {
-        await axios.post("users/", data, config).then((res) => {
-          localStorage.setItem("token", res.data.token);
-          setAuthenticated(true);
-          setUsername(res.data.username);
-          history.push("/home");
-        });
+        await axios
+          .post("users/", { ...data, is_organization: true })
+          .then((res) => {
+            localStorage.setItem("token", res.data.token);
+            setAuthenticated(true);
+            history.push("/home");
+          });
       } catch (error) {
         console.log(error);
       }
     };
     sendSignupRequest();
+    getCurrentUser();
   };
 
   const handleLogOut = () => {
     localStorage.removeItem("token");
-    setUsername("");
+    setUser({ username: "", email: "", isOrganization: false });
     setAuthenticated(false);
     history.push("/");
   };
 
+  const getCurrentUser = useCallback(async () => {
+    try {
+      axios
+        .get("userprofiles/", {
+          headers: { Authorization: `JWT ${localStorage.getItem("token")}` },
+        })
+        .then((res) => {
+          console.log(res);
+          res.data[0] &&
+            setUser({
+              username: res.data[0].user.username,
+              email: res.data[0].user.email,
+              isOrganization: res.data[0].is_organization,
+            });
+        });
+    } catch (error) {
+      console.log(error);
+    }
+  }, []);
+
   useEffect(() => {
     if (isAuthenticated) {
-      const config = {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `JWT ${localStorage.getItem("token")}`,
-        },
-      };
-      try {
-        axios.get("current_user/", config).then((res) => {
-          setUsername(res.data.username);
-        });
-      } catch (error) {
-        console.log(error);
-      }
+      getCurrentUser();
     }
-  }, [isAuthenticated]);
+  }, [getCurrentUser, isAuthenticated]);
+
+  console.log(user);
 
   return (
     <div className="App">
@@ -108,7 +118,9 @@ function App() {
           </div>
         )}
         <div>
+
           <img id="imgLogo" src={loginImage} alt="Logo"></img>
+
         </div>
       </div>
       <Router history={history}>
