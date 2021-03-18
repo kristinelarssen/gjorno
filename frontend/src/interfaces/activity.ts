@@ -9,7 +9,7 @@ export default interface IActivity {
       username: string;
       email: string;
     };
-    isOrganization: boolean;
+    is_organization: boolean;
   };
   genre: string;
 }
