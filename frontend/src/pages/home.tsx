@@ -12,7 +12,12 @@ import "./../App.css";
 function Home() {
   const [popup, setPopup] = useState(false);
   const [activities, setActivities] = useState<IActivity[]>([]);
+
+  const [acfilter, setAcfilter] = useState("Alle");
+  const [allAcFilter, setAllAcFilter] = useState("Alle");
+
   const [author, setAuthor] = useState<IAuthor>();
+
 
   async function fetchData() {
     const request = await axios.get("activities/", {
@@ -42,6 +47,13 @@ function Home() {
     };
     sendPostRequest();
   };
+
+
+  let activitiesToShow = activities;
+
+  if (acfilter !== "Alle") {
+    activitiesToShow = activities.filter((item) => item.genre === acfilter);
+  }
 
   const getAuthor = async () => {
     try {
@@ -73,10 +85,10 @@ function Home() {
 
   console.log(author);
 
+
   return (
     <div className="App">
       <header>
-        <Navbar />
         <button
           id="btnNewAct"
           onClick={() => {
@@ -86,8 +98,38 @@ function Home() {
           OPPRETT NY AKTIVITET
         </button>
       </header>
+
+      <div id="filter-container">
+        <div id="filterbox">
+          <label>Hvem sine aktiviteter vil du se?</label>
+          <br />
+          <select
+            onChange={(event) => {
+              setAllAcFilter(event.target.value);
+            }}
+          >
+            <option value="Alle">Alle</option>
+            <option value="Mine">Mine</option>
+          </select>
+        </div>
+        <div id="filterbox">
+          <label>Hvilke aktiviteter vil du se?</label>
+          <br />
+          <select
+            onChange={(event) => {
+              setAcfilter(event.target.value);
+            }}
+          >
+            <option value="Alle">Alle</option>
+            <option value="Annet">Annet</option>
+            <option value="Tur">Tur</option>
+            <option value="Løping">Løping</option>
+            <option value="Attraksjon">Attraksjon</option>
+          </select>
+        </div>
+      </div>
       <div id="activities">
-        <ActivityList activities={activities} />
+        <ActivityList activities={activitiesToShow} />
       </div>
       <div>
         {popup ? (

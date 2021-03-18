@@ -4,6 +4,9 @@ export default interface IActivity {
   created: Date | string;
   description: string;
   date: Date | string;
+
+  genre: string;
+
   author?: {
     user: {
       username: string;
@@ -11,4 +14,5 @@ export default interface IActivity {
     };
     isOrganization: boolean;
   };
+
 }

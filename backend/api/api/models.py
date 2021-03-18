@@ -16,6 +16,18 @@ class Activity(models.Model):
     date = models.DateTimeField()
     author = models.ForeignKey(UserProfile, on_delete=CASCADE, default=1)
 
+    class ActivityGenre(models.TextChoices):
+        ANNET = 'Annet'
+        TUR = 'Tur'
+        LOP = 'Løping'
+        ATTRAKSJON = "Attraksjon"
+
+    genre = models.CharField(
+        max_length=10, choices=ActivityGenre.choices,
+        default=ActivityGenre.ANNET, 
+    )
+
+
     class Meta:
         verbose_name_plural = "Activities"
 

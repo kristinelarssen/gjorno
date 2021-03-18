@@ -6,6 +6,7 @@ from rest_framework_jwt.settings import api_settings
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
+
         model = User
         fields = ["id", "username", "email"]
 
