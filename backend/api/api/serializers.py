@@ -1,6 +1,5 @@
 from django.contrib.auth.models import User
 from django.db.models import fields
-from django.shortcuts import get_object_or_404
 from rest_framework import serializers
 from rest_framework_jwt.settings import api_settings
 
@@ -77,4 +76,4 @@ class ActivitySerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Activity
-        fields = ["title", "created", "description", "date", "author"]
+        fields = ["title", "created", "description", "date", "author", "genre"]

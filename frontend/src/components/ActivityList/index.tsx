@@ -20,6 +20,7 @@ const ActivityList: React.FC<Props> = ({ activities }) => {
             description={item.description}
             date={moment(item.date).format("Do MMMM YYYY, HH:mm")}
             author={item.author}
+            genre={item.genre}
           />
         ))}
     </div>

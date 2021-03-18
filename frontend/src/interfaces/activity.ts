@@ -11,4 +11,5 @@ export default interface IActivity {
     };
     isOrganization: boolean;
   };
+  genre: string;
 }
