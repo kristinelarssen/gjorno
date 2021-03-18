@@ -92,3 +92,13 @@
   text-decoration: underline;
   cursor: pointer;
 }
+
+#float-container {
+  display: flex;
+  width: 100%;
+  padding: 30px;
+}
+
+.float-child {
+  flex: 1;
+}
