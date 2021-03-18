@@ -33,7 +33,7 @@ function Home() {
         console.log(author);
         await axios.post(
           `activities/`,
-          { ...data, author: author },
+          { ...data, author: author?.id },
           { headers: { Authorization: `JWT ${localStorage.getItem("token")}` } }
         );
         fetchData();
@@ -61,11 +61,7 @@ function Home() {
             setAuthor({
               id: res.data[0].id,
               isOrganization: res.data[0].is_organization,
-              user: {
-                id: res.data[0].user.id,
-                username: res.data[0].user.username,
-                email: res.data[0].user.email,
-              },
+              user: res.data[0].user.id,
             });
           }
         });
@@ -79,6 +75,7 @@ function Home() {
   }, []);
 
   console.log(author);
+  let activitiesToShow = activities;
 
   let showMyActivites = activities;
 

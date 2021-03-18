@@ -1,7 +1,28 @@
-from rest_framework import serializers
-from .models import Activity, UserProfile
 from django.contrib.auth.models import User
+from django.db.models import fields
+from rest_framework import serializers
 from rest_framework_jwt.settings import api_settings
+
+from .models import Activity, UserProfile
+
+
+class CustomRelatedField(serializers.PrimaryKeyRelatedField):
+    def __init__(self, **kwargs):
+        self.serializer = kwargs.pop("serializer", None)
+        if self.serializer is not None and not issubclass(
+            self.serializer, serializers.Serializer
+        ):
+            raise TypeError('"serializer" is not a valid serializer class')
+
+        super().__init__(**kwargs)
+
+    def use_pk_only_optimization(self):
+        return False if self.serializer else True
+
+    def to_representation(self, instance):
+        if self.serializer:
+            return self.serializer(instance, context=self.context).data
+        return super().to_representation(instance)
 
 
 class UserSerializer(serializers.ModelSerializer):
@@ -12,7 +33,7 @@ class UserSerializer(serializers.ModelSerializer):
 
 
 class UserProfileSerializer(serializers.ModelSerializer):
-    user = UserSerializer()
+    user = CustomRelatedField(queryset=User.objects.all(), serializer=UserSerializer)
 
     class Meta:
         model = UserProfile
@@ -49,8 +70,11 @@ class UserSerializerWithToken(serializers.ModelSerializer):
 
 
 class ActivitySerializer(serializers.ModelSerializer):
-    author = UserProfileSerializer()
+
+    author = CustomRelatedField(
+        queryset=UserProfile.objects.all(), serializer=UserProfileSerializer
+    )
 
     class Meta:
         model = Activity
-        fields = ["id", "title", "created", "description", "date", "author"]
+        fields = ["title", "created", "description", "date", "author", "genre"]

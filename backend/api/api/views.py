@@ -10,7 +10,6 @@ from .models import Activity, UserProfile
 from .serializers import (
     ActivitySerializer,
     UserProfileSerializer,
-    UserSerializer,
     UserSerializerWithToken,
 )
 

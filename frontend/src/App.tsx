@@ -109,7 +109,7 @@ function App() {
         {isAuthenticated && (
           <div id="user">
             <p className="text" id="username">
-              Hello {user.username}
+              Hello {user?.username}
             </p>
             <button id="btnLogOut" onClick={handleLogOut}>
               Logg ut
