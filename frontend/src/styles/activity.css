@@ -3,7 +3,7 @@
   padding: 10px;
   margin: 20px;
   width: 220px;
-  height: 280px;
+  height: 220px;
   border-radius: 20px;
   flex: auto;
 }
@@ -39,16 +39,6 @@
 
 #attraksjonBox {
   background-color: #7b9e99;
-}
-
-.activity-button {
-  font-weight: bolder;
-  color: white;
-  background-color: #452b80;
-  border-radius: 6px;
-  border-width: 1px;
-  height: 30px;
-  width: 130px;
 }
 
 #icon {
