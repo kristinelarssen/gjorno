@@ -11,6 +11,7 @@ function Home() {
   const [activities, setActivities] = useState<IActivity[]>([]);
   const [author, setAuthor] = useState<IAuthor>();
   const [acfilter, setAcfilter] = useState("Alle");
+  const [orgfilter, setOrgfilter] = useState("Alle");
 
   async function fetchData() {
     const request = await axios.get("activities/", {
@@ -68,8 +69,32 @@ function Home() {
   console.log(author);
   let activitiesToShow = activities;
 
-  if (acfilter !== "Alle") {
+  if (acfilter !== "Alle" && orgfilter === "Alle") {
     activitiesToShow = activities.filter((item) => item.genre === acfilter);
+  } else if (acfilter == "Alle" && orgfilter !== "Alle") {
+    if (orgfilter === "Privatpersoner") {
+      activitiesToShow = activities.filter(
+        (item) => item.author?.is_organization === false
+      );
+    }
+    if (orgfilter === "Organisasjon") {
+      activitiesToShow = activities.filter(
+        (item) => item.author?.is_organization === true
+      );
+    }
+  } else if (acfilter !== "Alle" && orgfilter !== "Alle") {
+    if (orgfilter === "Privatpersoner") {
+      activitiesToShow = activities.filter(
+        (item) =>
+          item.genre === acfilter && item.author?.is_organization === false
+      );
+    }
+    if (orgfilter === "Organisasjon") {
+      activitiesToShow = activities.filter(
+        (item) =>
+          item.genre === acfilter && item.author?.is_organization === true
+      );
+    }
   }
 
   return (
@@ -84,20 +109,35 @@ function Home() {
           OPPRETT NY AKTIVITET
         </button>
       </header>
-      <div id="filterbox">
-        <label>Hvilke aktiviteter vil du se?</label>
-        <br />
-        <select
-          onChange={(event) => {
-            setAcfilter(event.target.value);
-          }}
-        >
-          <option value="Alle">Alle</option>
-          <option value="Annet">Annet</option>
-          <option value="Tur">Tur</option>
-          <option value="Løping">Løping</option>
-          <option value="Attraksjon">Attraksjon</option>
-        </select>
+      <div id="filter-container">
+        <div id="filterbox">
+          <label>Hvilke aktiviteter vil du se?</label>
+          <br />
+          <select
+            onChange={(event) => {
+              setAcfilter(event.target.value);
+            }}
+          >
+            <option value="Alle">Alle</option>
+            <option value="Annet">Annet</option>
+            <option value="Tur">Tur</option>
+            <option value="Løping">Løping</option>
+            <option value="Attraksjon">Attraksjon</option>
+          </select>
+        </div>
+        <div id="filterbox">
+          <label>Hvilke aktiviteter vil du se?</label>
+          <br />
+          <select
+            onChange={(event) => {
+              setOrgfilter(event.target.value);
+            }}
+          >
+            <option value="Alle">Alle</option>
+            <option value="Privatpersoner">Privatpersoner</option>
+            <option value="Organisasjon">Organiserte aktivitetet</option>
+          </select>
+        </div>
       </div>
       <div id="activities">
         <ActivityList activities={activitiesToShow} />
