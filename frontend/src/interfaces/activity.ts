@@ -2,14 +2,14 @@ export default interface IActivity {
   id?: number;
   title: string;
   created: Date | string;
-  description: string;
+  description: String;
   date: Date | string;
   author?: {
     user: {
-      username: string;
-      email: string;
+      username: String;
+      email: String;
     };
-    is_organization: boolean;
+    is_organization: Boolean;
   };
-  genre: string;
+  genre: String;
 }

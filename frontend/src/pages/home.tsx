@@ -31,7 +31,11 @@ function Home() {
         await axios.post(
           `activities/`,
           { ...data, author: author?.id },
-          { headers: { Authorization: `JWT ${localStorage.getItem("token")}` } }
+          {
+            headers: {
+              Authorization: `JWT ${localStorage.getItem("token")}`,
+            },
+          }
         );
         fetchData();
       } catch (error) {

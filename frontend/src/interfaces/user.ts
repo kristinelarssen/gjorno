@@ -1,7 +1,7 @@
 export default interface IUser {
-  id?: number;
-  username: string;
-  email: string;
-  password?: string;
-  is_organization: boolean;
+  id?: Number;
+  username: String;
+  email: String;
+  password?: String;
+  is_organization: Boolean;
 }

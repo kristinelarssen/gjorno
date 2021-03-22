@@ -1,30 +1,22 @@
 from django.contrib.auth.models import User
-from rest_framework import mixins
-from rest_framework import permissions, status, viewsets
+from rest_framework import generics, mixins, permissions, status, viewsets
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from rest_framework import generics
 
 from .models import Activity, UserProfile
 from .serializers import (
-    ActivitySerializer,
+    CreateActivitySerializer,
+    CreateUserProfileSerializer,
     UserProfileSerializer,
     UserSerializerWithToken,
 )
 
 
-class ActivityViewSet(viewsets.ModelViewSet):
+class ActivityViewSet(viewsets.ModelViewSet, mixins.UpdateModelMixin):
     queryset = Activity.objects.all()
-    serializer_class = ActivitySerializer
-    permissions = [permissions.IsAuthenticatedOrReadOnly]
-
-    def post(self, request, *args, **kwargs):
-        serializer = ActivitySerializer(data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    permissions = [permissions.IsAuthenticated]
+    serializer_class = CreateActivitySerializer
 
 
 class UserList(APIView):
@@ -49,6 +41,13 @@ class UserProfileViewSet(viewsets.ModelViewSet, mixins.UpdateModelMixin):
     permission_classes = [
         permissions.IsAuthenticated,
     ]
+
+    def post(self, request, *args, **kwargs):
+        serializer = CreateUserProfileSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
     def get_object(self):
         return self.request.user.user_profile
