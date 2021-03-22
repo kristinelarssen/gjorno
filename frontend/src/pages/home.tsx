@@ -82,6 +82,10 @@ function Home() {
         (item) => item.author?.is_organization === true
       );
     }
+    if (orgfilter === "Mine") {
+      console.log("author", author);
+      activitiesToShow = activities.filter((item) => item.author === author);
+    }
   } else if (acfilter !== "Alle" && orgfilter !== "Alle") {
     if (orgfilter === "Privatpersoner") {
       activitiesToShow = activities.filter(
@@ -93,6 +97,13 @@ function Home() {
       activitiesToShow = activities.filter(
         (item) =>
           item.genre === acfilter && item.author?.is_organization === true
+      );
+    }
+    if (orgfilter === "Mine") {
+      activitiesToShow = activities.filter(
+        (item) =>
+          item.genre === acfilter &&
+          item.author?.user.username === author?.user.username
       );
     }
   }
@@ -111,7 +122,7 @@ function Home() {
       </header>
       <div id="filter-container">
         <div id="filterbox">
-          <label>Hvilke aktiviteter vil du se?</label>
+          <label>Hvilken type aktiviteter vil du se?</label>
           <br />
           <select
             onChange={(event) => {
@@ -126,7 +137,7 @@ function Home() {
           </select>
         </div>
         <div id="filterbox">
-          <label>Hvilke aktiviteter vil du se?</label>
+          <label>Hvem sine aktiviteter vil du se?</label>
           <br />
           <select
             onChange={(event) => {
@@ -134,8 +145,9 @@ function Home() {
             }}
           >
             <option value="Alle">Alle</option>
-            <option value="Privatpersoner">Privatpersoner</option>
-            <option value="Organisasjon">Organiserte aktivitetet</option>
+            <option value="Privatpersoner">Inspirasjon til aktiviteter</option>
+            <option value="Organisasjon">Organiserte aktiviteter</option>
+            <option value="Mine">Mine aktiviteter</option>
           </select>
         </div>
       </div>
