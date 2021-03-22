@@ -1,11 +1,11 @@
 from django.contrib.auth.models import User
-from django.db.models import fields
 from rest_framework import serializers
 from rest_framework_jwt.settings import api_settings
 
 from .models import Activity, UserProfile
 
 
+# Helper method to handle nested serializer-fields
 class CustomRelatedField(serializers.PrimaryKeyRelatedField):
     def __init__(self, **kwargs):
         self.serializer = kwargs.pop("serializer", None)
@@ -25,6 +25,7 @@ class CustomRelatedField(serializers.PrimaryKeyRelatedField):
         return super().to_representation(instance)
 
 
+# Serializers for User & UserProfile models
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
@@ -76,10 +77,12 @@ class UserSerializerWithToken(serializers.ModelSerializer):
         fields = ("token", "username", "email", "password", "is_organization")
 
 
+# Serializers for Activity model
 class CreateActivitySerializer(serializers.ModelSerializer):
 
     author = CustomRelatedField(
-        queryset=UserProfile.objects.all(), serializer=CreateUserProfileSerializer
+        queryset=UserProfile.objects.all(),
+        serializer=UserProfileSerializer,
     )
 
     class Meta:

@@ -1,6 +1,4 @@
-from django.contrib.auth.models import User
-from rest_framework import generics, mixins, permissions, status, viewsets
-from rest_framework.decorators import api_view
+from rest_framework import mixins, permissions, status, viewsets
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
@@ -17,7 +15,14 @@ from .serializers import (
 class ActivityViewSet(viewsets.ModelViewSet, mixins.UpdateModelMixin):
     queryset = Activity.objects.all()
     permissions = [permissions.IsAuthenticatedOrReadOnly]
-    serializer_class = CreateActivitySerializer
+    serializer_class = ActivitySerializer
+
+    def create(self, request):
+        serializer = CreateActivitySerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
 class UserList(APIView):

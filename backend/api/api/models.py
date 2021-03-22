@@ -1,7 +1,6 @@
 from django.contrib.auth.models import User
 from django.db import models
 from django.db.models.deletion import CASCADE
-from django.db.models.fields import related
 
 
 class UserProfile(models.Model):
@@ -17,16 +16,16 @@ class Activity(models.Model):
     author = models.ForeignKey(UserProfile, on_delete=CASCADE, default=1)
 
     class ActivityGenre(models.TextChoices):
-        ANNET = 'Annet'
-        TUR = 'Tur'
-        LOP = 'Løping'
+        ANNET = "Annet"
+        TUR = "Tur"
+        LOP = "Løping"
         ATTRAKSJON = "Attraksjon"
 
     genre = models.CharField(
-        max_length=10, choices=ActivityGenre.choices,
-        default=ActivityGenre.ANNET, 
+        max_length=10,
+        choices=ActivityGenre.choices,
+        default=ActivityGenre.ANNET,
     )
-
 
     class Meta:
         verbose_name_plural = "Activities"
