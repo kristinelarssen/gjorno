@@ -6,6 +6,7 @@ from rest_framework.views import APIView
 
 from .models import Activity, UserProfile
 from .serializers import (
+    ActivitySerializer,
     CreateActivitySerializer,
     CreateUserProfileSerializer,
     UserProfileSerializer,
@@ -15,7 +16,7 @@ from .serializers import (
 
 class ActivityViewSet(viewsets.ModelViewSet, mixins.UpdateModelMixin):
     queryset = Activity.objects.all()
-    permissions = [permissions.IsAuthenticated]
+    permissions = [permissions.IsAuthenticatedOrReadOnly]
     serializer_class = CreateActivitySerializer
 
 

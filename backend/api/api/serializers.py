@@ -79,7 +79,7 @@ class UserSerializerWithToken(serializers.ModelSerializer):
 class CreateActivitySerializer(serializers.ModelSerializer):
 
     author = CustomRelatedField(
-        queryset=UserProfile.objects.all(), serializer=UserProfileSerializer
+        queryset=UserProfile.objects.all(), serializer=CreateUserProfileSerializer
     )
 
     class Meta:
