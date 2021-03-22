@@ -32,7 +32,11 @@ const Activity: React.FC<IActivity> = ({
               ? `Opprettet av: ${author.user.username}`
               : null}
           </p>
-          <p>{author?.is_organization && <button>Meld deg på!</button>}</p>
+          <p>
+            {author?.is_organization && (
+              <button className="activity-button">Meld deg på!</button>
+            )}
+          </p>
         </div>
       )}
       {genre === "Tur" && (
@@ -50,7 +54,11 @@ const Activity: React.FC<IActivity> = ({
               ? `Opprettet av: ${author.user.username}`
               : null}
           </p>
-          <p>{author?.is_organization && <button>Meld deg på!</button>}</p>
+          <p>
+            {author?.is_organization && (
+              <button className="activity-button">Meld deg på!</button>
+            )}
+          </p>
         </div>
       )}
       {genre === "Løping" && (
@@ -68,7 +76,11 @@ const Activity: React.FC<IActivity> = ({
               ? `Opprettet av: ${author.user.username}`
               : null}
           </p>
-          <p>{author?.is_organization && <button>Meld deg på!</button>}</p>
+          <p>
+            {author?.is_organization && (
+              <button className="activity-button">Meld deg på!</button>
+            )}
+          </p>
         </div>
       )}
       {genre === "Attraksjon" && (
@@ -86,7 +98,11 @@ const Activity: React.FC<IActivity> = ({
               ? `Opprettet av: ${author.user.username}`
               : null}
           </p>
-          <p>{author?.is_organization && <button>Meld deg på!</button>}</p>
+          <p>
+            {author?.is_organization && (
+              <button className="activity-button">Meld deg på!</button>
+            )}
+          </p>
         </div>
       )}
     </>
