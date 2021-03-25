@@ -51,13 +51,11 @@ function App() {
     event.preventDefault();
     const sendSignupRequest = async () => {
       try {
-        await axios
-          .post("users/", { ...data, is_organization: true })
-          .then((res) => {
-            localStorage.setItem("token", res.data.token);
-            setAuthenticated(true);
-            history.push("/home");
-          });
+        await axios.post("users/", { ...data }).then((res) => {
+          localStorage.setItem("token", res.data.token);
+          setAuthenticated(true);
+          history.push("/home");
+        });
       } catch (error) {
         console.log(error);
       }
