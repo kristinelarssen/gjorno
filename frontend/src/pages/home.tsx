@@ -70,49 +70,48 @@ function Home() {
     getAuthor();
   }, []);
 
-  console.log(author);
   let activitiesToShow = activities;
-
-  if (acfilter !== "Alle" && orgfilter === "Alle") {
-    activitiesToShow = activities.filter((item) => item.genre === acfilter);
-  } else if (acfilter == "Alle" && orgfilter !== "Alle") {
-    if (orgfilter === "Privatpersoner") {
-      activitiesToShow = activities.filter(
-        (item) => item.author?.is_organization === false
-      );
+  const setFilters = () => {
+    if (acfilter !== "Alle" && orgfilter === "Alle") {
+      activitiesToShow = activities.filter((item) => item.genre === acfilter);
+    } else if (acfilter == "Alle" && orgfilter !== "Alle") {
+      if (orgfilter === "Privatpersoner") {
+        activitiesToShow = activities.filter(
+          (item) => item.author?.is_organization === false
+        );
+      }
+      if (orgfilter === "Organisasjon") {
+        activitiesToShow = activities.filter(
+          (item) => item.author?.is_organization === true
+        );
+      }
+      if (orgfilter === "Mine") {
+        activitiesToShow = activities.filter(
+          (item) => item.author?.user.username === author?.user.username
+        );
+      }
+    } else if (acfilter !== "Alle" && orgfilter !== "Alle") {
+      if (orgfilter === "Privatpersoner") {
+        activitiesToShow = activities.filter(
+          (item) =>
+            item.genre === acfilter && item.author?.is_organization === false
+        );
+      }
+      if (orgfilter === "Organisasjon") {
+        activitiesToShow = activities.filter(
+          (item) =>
+            item.genre === acfilter && item.author?.is_organization === true
+        );
+      }
+      if (orgfilter === "Mine") {
+        activitiesToShow = activities.filter(
+          (item) =>
+            item.genre === acfilter &&
+            item.author?.user.username === author?.user.username
+        );
+      }
     }
-    if (orgfilter === "Organisasjon") {
-      activitiesToShow = activities.filter(
-        (item) => item.author?.is_organization === true
-      );
-    }
-    if (orgfilter === "Mine") {
-      activitiesToShow = activities.filter(
-        (item) => item.author?.user.username === author?.user.username
-      );
-    }
-  } else if (acfilter !== "Alle" && orgfilter !== "Alle") {
-    if (orgfilter === "Privatpersoner") {
-      activitiesToShow = activities.filter(
-        (item) =>
-          item.genre === acfilter && item.author?.is_organization === false
-      );
-    }
-    if (orgfilter === "Organisasjon") {
-      activitiesToShow = activities.filter(
-        (item) =>
-          item.genre === acfilter && item.author?.is_organization === true
-      );
-    }
-    if (orgfilter === "Mine") {
-      activitiesToShow = activities.filter(
-        (item) =>
-          item.genre === acfilter &&
-          item.author?.user.username === author?.user.username
-      );
-    }
-  }
-
+  };
   return (
     <div className="App">
       <header>
@@ -132,6 +131,7 @@ function Home() {
           <select
             onChange={(event) => {
               setAcfilter(event.target.value);
+              setFilters();
             }}
           >
             <option value="Alle">Alle</option>
@@ -147,6 +147,7 @@ function Home() {
           <select
             onChange={(event) => {
               setOrgfilter(event.target.value);
+              setFilters();
             }}
           >
             <option value="Alle">Alle</option>
