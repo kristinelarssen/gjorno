@@ -87,13 +87,35 @@ class CreateActivitySerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Activity
-        fields = ["id", "title", "created", "description", "date", "author", "genre"]
+        fields = [
+            "id",
+            "title",
+            "created",
+            "description",
+            "date",
+            "author",
+            "genre",
+            "participants",
+        ]
+
+
+class AddParticipantSerializer(serializers.ModelSerializer):
+    def partial_update(self, instance, validated_data):
+        user_profile_id = validated_data.get("user_profile_id")
+        user_profile = UserProfile.objects.get(pk=user_profile_id)
+        instance.participants.add(user_profile)
+        instance.save()
+        return instance
+
+    class Meta:
+        model = Activity
+        fields = ["participants"]
 
 
 class ActivitySerializer(serializers.ModelSerializer):
 
     author = UserProfileSerializer()
-    participants = UserProfileSerializer(many=True, read_only=True)
+    participants = UserProfileSerializer(many=True)
 
     class Meta:
         model = Activity

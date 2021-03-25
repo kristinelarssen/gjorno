@@ -15,6 +15,7 @@ const ActivityList: React.FC<Props> = ({ activities }) => {
         activities.map((item) => (
           <Activity
             key={item.id}
+            id={item.id}
             title={item.title}
             created={moment(item.created).format("Do MMMM YYYY, HH:mm")}
             description={item.description}

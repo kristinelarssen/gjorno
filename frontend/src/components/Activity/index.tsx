@@ -1,10 +1,11 @@
-import React from "react";
+import axios from "../../axios";
+import React, { useState } from "react";
+import annetImg from "../../images/annet.png";
+import attImg from "../../images/attraksjon.png";
+import lopingImg from "../../images/loping.png";
+import turImg from "../../images/tur.png";
 import IActivity from "../../interfaces/activity";
 import "../../styles/activity.css";
-import annetImg from "../../images/annet.png";
-import turImg from "../../images/tur.png";
-import lopingImg from "../../images/loping.png";
-import attImg from "../../images/attraksjon.png";
 
 const Activity: React.FC<IActivity> = ({
   id,
@@ -15,6 +16,33 @@ const Activity: React.FC<IActivity> = ({
   author,
   genre,
 }) => {
+  const [isParticipating, setIsParticipating] = useState<boolean>(false);
+
+  const addParticipant = () => {
+    const sendPostRequest = async () => {
+      try {
+        console.log("activty_id", id);
+        console.log("author_id", author?.id);
+        id &&
+          author &&
+          (await axios
+            .patch(
+              `activities/${id}/`,
+              { activity_id: id, user_profile_id: author.id },
+              {
+                headers: {
+                  Authorization: `JWT ${localStorage.getItem("token")}`,
+                },
+              }
+            )
+            .then(() => setIsParticipating(true)));
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    sendPostRequest();
+  };
+
   return (
     <>
       {genre === "Annet" && (
@@ -28,13 +56,13 @@ const Activity: React.FC<IActivity> = ({
           <p id="dato">Dato og tidspunkt: {date}</p>
           <p>{author?.is_organization ? "Organisasjon" : "Privatperson"}</p>
           <p>
-            {author?.user.username
-              ? `Opprettet av: ${author.user.username}`
-              : null}
+            {author?.user.username && `Opprettet av ${author.user.username}`}
           </p>
           <p>
             {author?.is_organization && (
-              <button className="activity-button">Meld deg på!</button>
+              <button className="activity-button" onClick={addParticipant}>
+                {isParticipating ? "Påmeldt" : "Meld deg på!"}
+              </button>
             )}
           </p>
         </div>
@@ -50,13 +78,13 @@ const Activity: React.FC<IActivity> = ({
           <p id="dato">Dato og tidspunkt: {date}</p>
           <p>{author?.is_organization ? "Organisasjon" : "Privatperson"}</p>
           <p>
-            {author?.user.username
-              ? `Opprettet av: ${author.user.username}`
-              : null}
+            {author?.user.username && `Opprettet av ${author.user.username}`}
           </p>
           <p>
             {author?.is_organization && (
-              <button className="activity-button">Meld deg på!</button>
+              <button className="activity-button" onClick={addParticipant}>
+                {isParticipating ? "Påmeldt" : "Meld deg på!"}
+              </button>
             )}
           </p>
         </div>
@@ -72,13 +100,13 @@ const Activity: React.FC<IActivity> = ({
           <p id="dato">Dato og tidspunkt: {date}</p>
           <p>{author?.is_organization ? "Organisasjon" : "Privatperson"}</p>
           <p>
-            {author?.user.username
-              ? `Opprettet av: ${author.user.username}`
-              : null}
+            {author?.user.username && `Opprettet av ${author.user.username}`}
           </p>
           <p>
             {author?.is_organization && (
-              <button className="activity-button">Meld deg på!</button>
+              <button className="activity-button" onClick={addParticipant}>
+                {isParticipating ? "Påmeldt" : "Meld deg på!"}
+              </button>
             )}
           </p>
         </div>
@@ -94,13 +122,13 @@ const Activity: React.FC<IActivity> = ({
           <p id="dato">Dato og tidspunkt: {date}</p>
           <p>{author?.is_organization ? "Organisasjon" : "Privatperson"}</p>
           <p>
-            {author?.user.username
-              ? `Opprettet av: ${author.user.username}`
-              : null}
+            {author?.user.username && `Opprettet av ${author.user.username}`}
           </p>
           <p>
             {author?.is_organization && (
-              <button className="activity-button">Meld deg på!</button>
+              <button className="activity-button" onClick={addParticipant}>
+                {isParticipating ? "Påmeldt" : "Meld deg på!"}
+              </button>
             )}
           </p>
         </div>
