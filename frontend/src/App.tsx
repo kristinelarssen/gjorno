@@ -99,8 +99,6 @@ function App() {
     }
   }, [getCurrentUser, isAuthenticated]);
 
-  console.log(user);
-
   return (
     <div className="App">
       <div id="navbar">

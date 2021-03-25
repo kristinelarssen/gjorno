@@ -33,7 +33,6 @@ const Home: FC<Props> = ({ user }) => {
   const handleSubmit = (data: IActivity) => {
     const sendPostRequest = async () => {
       try {
-        console.log(author);
         await axios.post(
           `activities/`,
           { ...data, author: author?.id },
@@ -71,9 +70,7 @@ const Home: FC<Props> = ({ user }) => {
     getAuthor();
   }, []);
 
-  console.log("USERMK" + user.username);
   let activitiesToShow = activities;
-  //console.log("authoer.user.id" + author?.user.id);
 
   if (acfilter !== "Alle" && orgfilter === "Alle") {
     activitiesToShow = activities.filter((item) => item.genre === acfilter);
