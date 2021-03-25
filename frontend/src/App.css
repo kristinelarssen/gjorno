@@ -82,3 +82,18 @@
   left: 20px;
   top: 20px;
 }
+
+.imgIcon {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  right: 120px;
+  top: 20px;
+}
+
+.iconText {
+  position: absolute;
+  right: 105px;
+  top: 45px;
+  font-size: xx-small;
+}
