@@ -1,12 +1,17 @@
-import React, { useEffect, useState } from "react";
+import React, { FC, useEffect, useState } from "react";
 import axios from "../axios";
 import ActivityList from "../components/ActivityList";
 import NewActivity from "../components/NewActivity";
 import IActivity from "../interfaces/activity";
+import IUser from "../interfaces/user";
 import IAuthor from "../interfaces/author";
 import "./../App.css";
 
-function Home() {
+interface Props {
+  user: IUser;
+}
+
+const Home: FC<Props> = ({ user }) => {
   const [popup, setPopup] = useState(false);
   const [activities, setActivities] = useState<IActivity[]>([]);
   const [author, setAuthor] = useState<IAuthor>();
@@ -66,12 +71,13 @@ function Home() {
     getAuthor();
   }, []);
 
-  console.log(author);
+  console.log("USERMK" + user.username);
   let activitiesToShow = activities;
+  //console.log("authoer.user.id" + author?.user.id);
 
   if (acfilter !== "Alle" && orgfilter === "Alle") {
     activitiesToShow = activities.filter((item) => item.genre === acfilter);
-  } else if (acfilter == "Alle" && orgfilter !== "Alle") {
+  } else if (acfilter === "Alle" && orgfilter !== "Alle") {
     if (orgfilter === "Privatpersoner") {
       activitiesToShow = activities.filter(
         (item) => item.author?.is_organization === false
@@ -83,8 +89,9 @@ function Home() {
       );
     }
     if (orgfilter === "Mine") {
-      console.log("author", author);
-      activitiesToShow = activities.filter((item) => item.author === author);
+      activitiesToShow = activities.filter(
+        (item) => item.author?.user.username === user.username
+      );
     }
   } else if (acfilter !== "Alle" && orgfilter !== "Alle") {
     if (orgfilter === "Privatpersoner") {
@@ -103,7 +110,7 @@ function Home() {
       activitiesToShow = activities.filter(
         (item) =>
           item.genre === acfilter &&
-          item.author?.user.username === author?.user.username
+          item.author?.user.username === user.username
       );
     }
   }
@@ -166,6 +173,6 @@ function Home() {
       </div>
     </div>
   );
-}
+};
 
 export default Home;

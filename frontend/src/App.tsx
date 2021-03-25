@@ -122,7 +122,9 @@ function App() {
       </div>
       <Router history={history}>
         <Switch>
-          <Route path={"/home"} exact component={Home} />
+          <Route path={"/home"}>
+            <Home user={user} />
+          </Route>
           <Route path={"/login"} exact>
             {isAuthenticated ? (
               <Redirect to={"/home"} />
