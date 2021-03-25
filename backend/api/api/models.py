@@ -7,6 +7,9 @@ class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=CASCADE, related_name="user_profile")
     is_organization = models.BooleanField(default=False, blank=True, null=True)
 
+    class Meta:
+        app_label = "api"
+
 
 class Activity(models.Model):
     title = models.CharField(max_length=150)
@@ -14,6 +17,9 @@ class Activity(models.Model):
     description = models.TextField(default="")
     date = models.DateTimeField()
     author = models.ForeignKey(UserProfile, on_delete=CASCADE, default=1)
+    participants = models.ManyToManyField(
+        UserProfile, related_name="participants", blank=True
+    )
 
     class ActivityGenre(models.TextChoices):
         ANNET = "Annet"
@@ -29,6 +35,7 @@ class Activity(models.Model):
 
     class Meta:
         verbose_name_plural = "Activities"
+        app_label = "api"
 
     def __str__(self):
         return self.title

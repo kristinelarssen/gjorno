@@ -57,7 +57,7 @@ function Home() {
             setAuthor({
               id: res.data[0].id,
               is_organization: res.data[0].is_organization,
-              user: res.data[0].user.id,
+              user: res.data[0].user,
             });
           }
         });
