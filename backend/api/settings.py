@@ -10,8 +10,8 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
-from pathlib import Path
 import datetime as datetime
+from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent
@@ -33,7 +33,7 @@ CORS_ALLOWED_ORIGINS = ["http://localhost:3000"]
 # JWT Token Config
 JWT_AUTH = {
     "JWT_RESPONSE_PAYLOAD_HANDLER": "api.utils.my_jwt_response_handler",
-    'JWT_EXPIRATION_DELTA': datetime.timedelta(hours=12)
+    "JWT_EXPIRATION_DELTA": datetime.timedelta(hours=12),
 }
 
 
@@ -49,7 +49,7 @@ INSTALLED_APPS = [
     "rest_framework",
     "rest_framework.authtoken",
     "corsheaders",
-    "api.api.apps.ApiConfig",
+    "api.api",
 ]
 
 REST_FRAMEWORK = {

@@ -1,9 +1,9 @@
 export default interface IAuthor {
-  id: Number;
+  id: number;
   is_organization: Boolean;
   user: {
-    email: string;
-    username: string;
+    email: String;
+    username: String;
     id: Number;
   };
 }
