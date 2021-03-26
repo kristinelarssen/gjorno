@@ -84,6 +84,11 @@ function Home() {
         (item) => item.author?.is_organization === true
       );
     }
+    if (orgfilter === "Mine") {
+      activitiesToShow = activities.filter(
+        (item) => item.author?.user.username === currentUser?.user.username
+      );
+    }
   } else if (acfilter !== "Alle" && orgfilter !== "Alle") {
     if (orgfilter === "Privatpersoner") {
       activitiesToShow = activities.filter(
@@ -95,6 +100,13 @@ function Home() {
       activitiesToShow = activities.filter(
         (item) =>
           item.genre === acfilter && item.author?.is_organization === true
+      );
+    }
+    if (orgfilter === "Mine") {
+      activitiesToShow = activities.filter(
+        (item) =>
+          item.genre === acfilter &&
+          item.author?.user.username === currentUser?.user.username
       );
     }
   }
@@ -138,6 +150,7 @@ function Home() {
             <option value="Alle">Alle</option>
             <option value="Privatpersoner">Privatpersoner</option>
             <option value="Organisasjon">Organiserte aktivitetet</option>
+            <option value="Mine">Mine aktivitetet</option>
           </select>
         </div>
       </div>
