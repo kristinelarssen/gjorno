@@ -57,7 +57,7 @@ function Home() {
             setAuthor({
               id: res.data[0].id,
               is_organization: res.data[0].is_organization,
-              user: res.data[0].user.id,
+              user: res.data[0].user,
             });
           }
         });
@@ -70,7 +70,6 @@ function Home() {
     getAuthor();
   }, []);
 
-  console.log(author);
   let activitiesToShow = activities;
 
   if (acfilter !== "Alle" && orgfilter === "Alle") {
@@ -86,6 +85,11 @@ function Home() {
         (item) => item.author?.is_organization === true
       );
     }
+    if (orgfilter === "Mine") {
+      activitiesToShow = activities.filter(
+        (item) => item.author?.user.username === author?.user.username
+      );
+    }
   } else if (acfilter !== "Alle" && orgfilter !== "Alle") {
     if (orgfilter === "Privatpersoner") {
       activitiesToShow = activities.filter(
@@ -97,6 +101,13 @@ function Home() {
       activitiesToShow = activities.filter(
         (item) =>
           item.genre === acfilter && item.author?.is_organization === true
+      );
+    }
+    if (orgfilter === "Mine") {
+      activitiesToShow = activities.filter(
+        (item) =>
+          item.genre === acfilter &&
+          item.author?.user.username === author?.user.username
       );
     }
   }
@@ -140,6 +151,7 @@ function Home() {
             <option value="Alle">Alle</option>
             <option value="Privatpersoner">Privatpersoner</option>
             <option value="Organisasjon">Organiserte aktivitetet</option>
+            <option value="Mine">Mine aktivitetet</option>
           </select>
         </div>
       </div>
