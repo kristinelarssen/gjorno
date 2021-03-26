@@ -1,3 +1,5 @@
+import IAuthor from "./author";
+
 export default interface IActivity {
   id?: number;
   title: string;
@@ -13,4 +15,5 @@ export default interface IActivity {
     is_organization: Boolean;
   };
   genre: String;
+  participants?: IAuthor[];
 }

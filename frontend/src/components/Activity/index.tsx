@@ -1,34 +1,42 @@
+import React, { useCallback, useEffect, useState } from "react";
 import axios from "../../axios";
-import React, { useState } from "react";
 import annetImg from "../../images/annet.png";
 import attImg from "../../images/attraksjon.png";
 import lopingImg from "../../images/loping.png";
 import turImg from "../../images/tur.png";
 import IActivity from "../../interfaces/activity";
+import IAuthor from "../../interfaces/author";
 import "../../styles/activity.css";
 
-const Activity: React.FC<IActivity> = ({
-  id,
-  title,
-  created,
-  description,
-  date,
-  author,
-  genre,
+interface Props {
+  activity: IActivity;
+  currentUser: IAuthor;
+}
+
+const Activity: React.FC<Props> = ({
+  activity: {
+    id,
+    title,
+    created,
+    description,
+    date,
+    author,
+    genre,
+    participants,
+  },
+  currentUser,
 }) => {
-  const [isParticipating, setIsParticipating] = useState<boolean>(false);
+  const [isParticipating, setIsParticipating] = useState<boolean>();
 
   const addParticipant = () => {
     const sendPostRequest = async () => {
       try {
-        console.log("activty_id", id);
-        console.log("author_id", author?.id);
         id &&
-          author &&
+          currentUser &&
           (await axios
-            .patch(
-              `activities/${id}/`,
-              { activity_id: id, user_profile_id: author.id },
+            .post(
+              `participant/${id}/${currentUser.id}/`,
+              {},
               {
                 headers: {
                   Authorization: `JWT ${localStorage.getItem("token")}`,
@@ -42,6 +50,37 @@ const Activity: React.FC<IActivity> = ({
     };
     sendPostRequest();
   };
+
+  const removeParticipant = () => {
+    const sendDeleteRequest = async () => {
+      try {
+        id &&
+          currentUser &&
+          (await axios
+            .delete(`participant/${id}/${currentUser.id}/`, {
+              headers: {
+                Authorization: `JWT ${localStorage.getItem("token")}`,
+              },
+            })
+            .then(() => setIsParticipating(false)));
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    sendDeleteRequest();
+  };
+
+  const checkIfParticipating = useCallback(() => {
+    if (participants && currentUser) {
+      setIsParticipating(
+        participants.filter((item) => item.id === currentUser.id).length > 0
+      );
+    }
+  }, [currentUser, participants]);
+
+  useEffect(() => {
+    checkIfParticipating();
+  }, [checkIfParticipating]);
 
   return (
     <>
@@ -59,9 +98,17 @@ const Activity: React.FC<IActivity> = ({
             {author?.user.username && `Opprettet av ${author.user.username}`}
           </p>
           <p>
-            {author?.is_organization && (
-              <button className="activity-button" onClick={addParticipant}>
-                {isParticipating ? "Påmeldt" : "Meld deg på!"}
+            {author?.is_organization &&
+              (!isParticipating ? (
+                <button className="activity-button" onClick={addParticipant}>
+                  {"Meld deg på"}
+                </button>
+              ) : (
+                "Påmeldt"
+              ))}
+            {isParticipating && (
+              <button className="activity-button" onClick={removeParticipant}>
+                {"Meld av"}
               </button>
             )}
           </p>
@@ -81,9 +128,18 @@ const Activity: React.FC<IActivity> = ({
             {author?.user.username && `Opprettet av ${author.user.username}`}
           </p>
           <p>
-            {author?.is_organization && (
-              <button className="activity-button" onClick={addParticipant}>
-                {isParticipating ? "Påmeldt" : "Meld deg på!"}
+            {author?.is_organization &&
+              (!isParticipating ? (
+                <button className="activity-button" onClick={addParticipant}>
+                  {"Meld deg på"}
+                </button>
+              ) : (
+                "Påmeldt"
+              ))}
+
+            {isParticipating && (
+              <button className="activity-button" onClick={removeParticipant}>
+                {"Meld av"}
               </button>
             )}
           </p>
@@ -103,9 +159,18 @@ const Activity: React.FC<IActivity> = ({
             {author?.user.username && `Opprettet av ${author.user.username}`}
           </p>
           <p>
-            {author?.is_organization && (
-              <button className="activity-button" onClick={addParticipant}>
-                {isParticipating ? "Påmeldt" : "Meld deg på!"}
+            {author?.is_organization &&
+              (!isParticipating ? (
+                <button className="activity-button" onClick={addParticipant}>
+                  {"Meld deg på"}
+                </button>
+              ) : (
+                "Påmeldt"
+              ))}
+
+            {isParticipating && (
+              <button className="activity-button" onClick={removeParticipant}>
+                {"Meld av"}
               </button>
             )}
           </p>
@@ -125,9 +190,18 @@ const Activity: React.FC<IActivity> = ({
             {author?.user.username && `Opprettet av ${author.user.username}`}
           </p>
           <p>
-            {author?.is_organization && (
-              <button className="activity-button" onClick={addParticipant}>
-                {isParticipating ? "Påmeldt" : "Meld deg på!"}
+            {author?.is_organization &&
+              (!isParticipating ? (
+                <button className="activity-button" onClick={addParticipant}>
+                  {"Meld deg på"}
+                </button>
+              ) : (
+                "Påmeldt"
+              ))}
+
+            {isParticipating && (
+              <button className="activity-button" onClick={removeParticipant}>
+                {"Meld av"}
               </button>
             )}
           </p>
