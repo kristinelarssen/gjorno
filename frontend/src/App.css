@@ -63,6 +63,7 @@
   position: fixed;
   right: 20px;
   top: 40px;
+  cursor: pointer;
 }
 
 .text {
@@ -81,4 +82,22 @@
   position: fixed;
   left: 20px;
   top: 20px;
+  cursor: pointer;
+}
+
+#act-log-btn {
+  position: fixed;
+  left: 80px;
+  top: 20px;
+  padding: 14px 28px;
+  border: none;
+  background-color: inherit;
+  font-size: 20px;
+  cursor: pointer;
+  display: inline-block;
+  color: #ffffff;
+}
+
+#act-log-btn:hover {
+  background: #344e41;
 }
