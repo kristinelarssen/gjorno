@@ -1,20 +1,87 @@
-import React from "react";
-import IActivity from "../../interfaces/activity";
-import "../../styles/activity.css";
+import React, { useCallback, useEffect, useState } from "react";
+import axios from "../../axios";
 import annetImg from "../../images/annet.png";
-import turImg from "../../images/tur.png";
-import lopingImg from "../../images/loping.png";
 import attImg from "../../images/attraksjon.png";
+import lopingImg from "../../images/loping.png";
+import turImg from "../../images/tur.png";
+import IActivity from "../../interfaces/activity";
+import IAuthor from "../../interfaces/author";
+import "../../styles/activity.css";
 
-const Activity: React.FC<IActivity> = ({
-  id,
-  title,
-  created,
-  description,
-  date,
-  author,
-  genre,
+interface Props {
+  activity: IActivity;
+  currentUser: IAuthor;
+}
+
+const Activity: React.FC<Props> = ({
+  activity: {
+    id,
+    title,
+    created,
+    description,
+    date,
+    author,
+    genre,
+    participants,
+  },
+  currentUser,
 }) => {
+  const [isParticipating, setIsParticipating] = useState<boolean>();
+
+  const addParticipant = () => {
+    const sendPostRequest = async () => {
+      try {
+        id &&
+          currentUser &&
+          (await axios
+            .post(
+              `participant/${id}/${currentUser.id}/`,
+              {},
+              {
+                headers: {
+                  Authorization: `JWT ${localStorage.getItem("token")}`,
+                },
+              }
+            )
+            .then(() => setIsParticipating(true)));
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    sendPostRequest();
+  };
+
+  const removeParticipant = () => {
+    const sendDeleteRequest = async () => {
+      try {
+        id &&
+          currentUser &&
+          (await axios
+            .delete(`participant/${id}/${currentUser.id}/`, {
+              headers: {
+                Authorization: `JWT ${localStorage.getItem("token")}`,
+              },
+            })
+            .then(() => setIsParticipating(false)));
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    sendDeleteRequest();
+  };
+
+  const checkIfParticipating = useCallback(() => {
+    if (participants && currentUser) {
+      setIsParticipating(
+        participants.filter((item) => item.id === currentUser.id).length > 0
+      );
+    }
+  }, [currentUser, participants]);
+
+  useEffect(() => {
+    checkIfParticipating();
+  }, [checkIfParticipating]);
+
   return (
     <>
       {genre === "Annet" && (
@@ -28,13 +95,21 @@ const Activity: React.FC<IActivity> = ({
           <p id="dato">Dato og tidspunkt: {date}</p>
           <p>{author?.is_organization ? "Organisasjon" : "Privatperson"}</p>
           <p>
-            {author?.user.username
-              ? `Opprettet av: ${author.user.username}`
-              : null}
+            {author?.user.username && `Opprettet av ${author.user.username}`}
           </p>
           <p>
-            {author?.is_organization && (
-              <button className="activity-button">Meld deg på!</button>
+            {author?.is_organization &&
+              (!isParticipating ? (
+                <button className="activity-button" onClick={addParticipant}>
+                  {"Meld deg på"}
+                </button>
+              ) : (
+                "Påmeldt"
+              ))}
+            {isParticipating && (
+              <button className="activity-button" onClick={removeParticipant}>
+                {"Meld av"}
+              </button>
             )}
           </p>
         </div>
@@ -50,13 +125,22 @@ const Activity: React.FC<IActivity> = ({
           <p id="dato">Dato og tidspunkt: {date}</p>
           <p>{author?.is_organization ? "Organisasjon" : "Privatperson"}</p>
           <p>
-            {author?.user.username
-              ? `Opprettet av: ${author.user.username}`
-              : null}
+            {author?.user.username && `Opprettet av ${author.user.username}`}
           </p>
           <p>
-            {author?.is_organization && (
-              <button className="activity-button">Meld deg på!</button>
+            {author?.is_organization &&
+              (!isParticipating ? (
+                <button className="activity-button" onClick={addParticipant}>
+                  {"Meld deg på"}
+                </button>
+              ) : (
+                "Påmeldt"
+              ))}
+
+            {isParticipating && (
+              <button className="activity-button" onClick={removeParticipant}>
+                {"Meld av"}
+              </button>
             )}
           </p>
         </div>
@@ -72,13 +156,22 @@ const Activity: React.FC<IActivity> = ({
           <p id="dato">Dato og tidspunkt: {date}</p>
           <p>{author?.is_organization ? "Organisasjon" : "Privatperson"}</p>
           <p>
-            {author?.user.username
-              ? `Opprettet av: ${author.user.username}`
-              : null}
+            {author?.user.username && `Opprettet av ${author.user.username}`}
           </p>
           <p>
-            {author?.is_organization && (
-              <button className="activity-button">Meld deg på!</button>
+            {author?.is_organization &&
+              (!isParticipating ? (
+                <button className="activity-button" onClick={addParticipant}>
+                  {"Meld deg på"}
+                </button>
+              ) : (
+                "Påmeldt"
+              ))}
+
+            {isParticipating && (
+              <button className="activity-button" onClick={removeParticipant}>
+                {"Meld av"}
+              </button>
             )}
           </p>
         </div>
@@ -94,13 +187,22 @@ const Activity: React.FC<IActivity> = ({
           <p id="dato">Dato og tidspunkt: {date}</p>
           <p>{author?.is_organization ? "Organisasjon" : "Privatperson"}</p>
           <p>
-            {author?.user.username
-              ? `Opprettet av: ${author.user.username}`
-              : null}
+            {author?.user.username && `Opprettet av ${author.user.username}`}
           </p>
           <p>
-            {author?.is_organization && (
-              <button className="activity-button">Meld deg på!</button>
+            {author?.is_organization &&
+              (!isParticipating ? (
+                <button className="activity-button" onClick={addParticipant}>
+                  {"Meld deg på"}
+                </button>
+              ) : (
+                "Påmeldt"
+              ))}
+
+            {isParticipating && (
+              <button className="activity-button" onClick={removeParticipant}>
+                {"Meld av"}
+              </button>
             )}
           </p>
         </div>

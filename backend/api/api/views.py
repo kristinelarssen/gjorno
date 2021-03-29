@@ -7,6 +7,7 @@ from .serializers import (
     ActivitySerializer,
     CreateActivitySerializer,
     CreateUserProfileSerializer,
+    ParticipantSerializer,
     UserProfileSerializer,
     UserSerializerWithToken,
 )
@@ -22,6 +23,30 @@ class ActivityViewSet(viewsets.ModelViewSet, mixins.UpdateModelMixin):
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+class ParticipantView(APIView):
+    permission_classes = [permissions.IsAuthenticated]
+
+    def post(self, request, activity_pk, user_profile_pk):
+        activity = Activity.objects.get(pk=activity_pk)
+        user_profile = UserProfile.objects.get(pk=user_profile_pk)
+        activity.participants.add(user_profile)
+        serializer = ParticipantSerializer(activity, data=request.data, partial=True)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    def delete(self, request, activity_pk, user_profile_pk):
+        activity = Activity.objects.get(pk=activity_pk)
+        user_profile = UserProfile.objects.get(pk=user_profile_pk)
+        activity.participants.remove(user_profile)
+        serializer = ParticipantSerializer(activity, data=request.data, partial=True)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_200_OK)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 

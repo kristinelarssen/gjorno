@@ -87,13 +87,48 @@ class CreateActivitySerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Activity
-        fields = ["id", "title", "created", "description", "date", "author", "genre"]
+        fields = [
+            "id",
+            "title",
+            "created",
+            "description",
+            "date",
+            "author",
+            "genre",
+            "participants",
+        ]
 
 
 class ActivitySerializer(serializers.ModelSerializer):
 
     author = UserProfileSerializer()
+    participants = UserProfileSerializer(many=True)
 
     class Meta:
         model = Activity
-        fields = ["id", "title", "created", "description", "date", "author", "genre"]
+        fields = [
+            "id",
+            "title",
+            "created",
+            "description",
+            "date",
+            "author",
+            "genre",
+            "participants",
+        ]
+
+
+class ParticipantSerializer(serializers.ModelSerializer):
+    participants = UserProfileSerializer(many=True)
+
+    class Meta:
+        model = Activity
+        fields = ["id", "participants"]
+        read_only_fields = [
+            "title",
+            "created",
+            "description",
+            "date",
+            "author",
+            "genre",
+        ]

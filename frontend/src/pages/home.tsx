@@ -9,7 +9,7 @@ import "./../App.css";
 function Home() {
   const [popup, setPopup] = useState(false);
   const [activities, setActivities] = useState<IActivity[]>([]);
-  const [author, setAuthor] = useState<IAuthor>();
+  const [currentUser, setCurrentUser] = useState<IAuthor>();
   const [acfilter, setAcfilter] = useState("Alle");
   const [orgfilter, setOrgfilter] = useState("Alle");
 
@@ -28,10 +28,9 @@ function Home() {
   const handleSubmit = (data: IActivity) => {
     const sendPostRequest = async () => {
       try {
-        console.log(author);
         await axios.post(
           `activities/`,
-          { ...data, author: author?.id },
+          { ...data, author: currentUser?.id },
           {
             headers: {
               Authorization: `JWT ${localStorage.getItem("token")}`,
@@ -46,7 +45,7 @@ function Home() {
     sendPostRequest();
   };
 
-  const getAuthor = async () => {
+  const getCurrentUser = async () => {
     try {
       await axios
         .get("userprofiles/", {
@@ -54,7 +53,7 @@ function Home() {
         })
         .then((res) => {
           if (res.data[0]) {
-            setAuthor({
+            setCurrentUser({
               id: res.data[0].id,
               is_organization: res.data[0].is_organization,
               user: res.data[0].user,
@@ -67,7 +66,7 @@ function Home() {
   };
 
   useEffect(() => {
-    getAuthor();
+    getCurrentUser();
   }, []);
 
   let activitiesToShow = activities;
@@ -87,7 +86,7 @@ function Home() {
     }
     if (orgfilter === "Mine") {
       activitiesToShow = activities.filter(
-        (item) => item.author?.user.username === author?.user.username
+        (item) => item.author?.user.username === currentUser?.user.username
       );
     }
   } else if (acfilter !== "Alle" && orgfilter !== "Alle") {
@@ -107,7 +106,7 @@ function Home() {
       activitiesToShow = activities.filter(
         (item) =>
           item.genre === acfilter &&
-          item.author?.user.username === author?.user.username
+          item.author?.user.username === currentUser?.user.username
       );
     }
   }
@@ -156,7 +155,12 @@ function Home() {
         </div>
       </div>
       <div id="activities">
-        <ActivityList activities={activitiesToShow} />
+        {currentUser && (
+          <ActivityList
+            currentUser={currentUser}
+            activities={activitiesToShow}
+          />
+        )}
       </div>
       <div>
         {popup ? (

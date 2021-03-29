@@ -1,13 +1,15 @@
 import moment from "moment";
 import "moment/locale/nb";
 import IActivity from "../../interfaces/activity";
+import IAuthor from "../../interfaces/author";
 import Activity from "../Activity";
 
 interface Props {
   activities: IActivity[];
+  currentUser: IAuthor;
 }
 
-const ActivityList: React.FC<Props> = ({ activities }) => {
+const ActivityList: React.FC<Props> = ({ activities, currentUser }) => {
   return (
     <div id="activities">
       {activities &&
@@ -15,12 +17,12 @@ const ActivityList: React.FC<Props> = ({ activities }) => {
         activities.map((item) => (
           <Activity
             key={item.id}
-            title={item.title}
-            created={moment(item.created).format("Do MMMM YYYY, HH:mm")}
-            description={item.description}
-            date={moment(item.date).format("Do MMMM YYYY, HH:mm")}
-            author={item.author}
-            genre={item.genre}
+            activity={{
+              ...item,
+              created: moment(item.created).format("Do MMMM YYYY, HH:mm"),
+              date: moment(item.date).format("Do MMMM YYYY, HH:mm"),
+            }}
+            currentUser={currentUser}
           />
         ))}
     </div>

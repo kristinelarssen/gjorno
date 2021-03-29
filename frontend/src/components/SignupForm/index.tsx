@@ -16,7 +16,7 @@ const SignupForm: React.FC<Props> = ({ handleSignup, error }) => {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [isOrganizationSignup, setIsorganizationSignup] = useState(false);
+  const [isOrganization, setIsOrganization] = useState(false);
 
   return (
     <div className="base-container">
@@ -32,7 +32,8 @@ const SignupForm: React.FC<Props> = ({ handleSignup, error }) => {
                 type="radio"
                 name="radiobutton"
                 value="private"
-                onChange={(e) => setIsorganizationSignup(false)}
+                checked
+                onChange={(e) => setIsOrganization(false)}
               ></input>
               <label htmlFor="private">Privat person</label>
             </div>
@@ -41,7 +42,7 @@ const SignupForm: React.FC<Props> = ({ handleSignup, error }) => {
                 type="radio"
                 name="radiobutton"
                 value="organization"
-                onChange={(e) => setIsorganizationSignup(true)}
+                onChange={(e) => setIsOrganization(true)}
               ></input>
               <label htmlFor="organization">Organisasjon</label>
             </div>
@@ -58,6 +59,7 @@ const SignupForm: React.FC<Props> = ({ handleSignup, error }) => {
               onChange={(event) => setUsername(event.target.value)}
             ></input>
           </div>
+
           <div className="form-group">
             <label htmlFor="email" className="loginLabel">
               E-post
