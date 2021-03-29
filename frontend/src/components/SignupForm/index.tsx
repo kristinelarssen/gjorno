@@ -47,7 +47,6 @@ const SignupForm: React.FC<Props> = ({ handleSignup, error }) => {
               <label htmlFor="organization">Organisasjon</label>
             </div>
           </div>
-
           <div className="form-group">
             <label htmlFor="username" className="loginLabel">
               Brukernavn
@@ -86,23 +85,23 @@ const SignupForm: React.FC<Props> = ({ handleSignup, error }) => {
             ></input>
           </div>
         </div>
-        <div className="footer">
-          <button
-            className="loginBtn"
-            onClick={(event) => {
-              handleSignup(event, {
-                username: username,
-                email: email,
-                password: password,
-                is_organization: isOrganization,
-              });
-            }}
-          >
-            Registrer deg
-          </button>
-        </div>
       </div>
-      <p style={{ color: "red" }}>{error}</p>
+      <p id="error">{error}</p>
+      <div className="footer">
+        <button
+          className="loginBtn"
+          onClick={(event) => {
+            handleSignup(event, {
+              username: username,
+              email: email,
+              password: password,
+              is_organization: isOrganizationSignup,
+            });
+          }}
+        >
+          Registrer deg
+        </button>
+      </div>
       <Link to="/login">
         <button id="button-link">Login</button>
       </Link>
