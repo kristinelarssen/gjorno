@@ -74,7 +74,7 @@ function Home() {
 
   if (acfilter !== "Alle" && orgfilter === "Alle") {
     activitiesToShow = activities.filter((item) => item.genre === acfilter);
-  } else if (acfilter == "Alle" && orgfilter !== "Alle") {
+  } else if (acfilter === "Alle" && orgfilter !== "Alle") {
     if (orgfilter === "Privatpersoner") {
       activitiesToShow = activities.filter(
         (item) => item.author?.is_organization === false
