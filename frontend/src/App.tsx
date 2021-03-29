@@ -20,6 +20,8 @@ function App() {
     localStorage.getItem("token") ? true : false
   );
 
+  const [error, setError] = useState("");
+
   const handleLogin = (
     event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
     data: IUserLogin
@@ -44,10 +46,23 @@ function App() {
     getCurrentUser();
   };
 
+  const checkPassword = (password: string) => {
+    const passwordRegex = new RegExp(
+      "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{8,32}$"
+    );
+    return passwordRegex.test(password);
+  };
+
   const handleSignup = (
     event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
     data: IUser
   ) => {
+    if (data?.password && !checkPassword(data.password)) {
+      setError(
+        "Password must contain minimum eight characters, both upper case and lower case letters and one number."
+      );
+      return;
+    }
     event.preventDefault();
     const sendSignupRequest = async () => {
       try {
@@ -97,8 +112,6 @@ function App() {
     }
   }, [getCurrentUser, isAuthenticated]);
 
-  console.log(user);
-
   return (
     <div className="App">
       <div id="navbar">
@@ -132,7 +145,7 @@ function App() {
             {isAuthenticated ? (
               <Redirect to={"/home"} />
             ) : (
-              <SignupForm handleSignup={handleSignup} />
+              <SignupForm error={error} handleSignup={handleSignup} />
             )}
           </Route>
           <Route path={"/"} exact>
