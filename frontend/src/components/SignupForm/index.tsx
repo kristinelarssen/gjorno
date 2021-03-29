@@ -85,6 +85,9 @@ const SignupForm: React.FC<Props> = ({ handleSignup, error }) => {
           </div>
         </div>
       </div>
+
+      <p id="error">{error}</p>
+
       <div className="footer">
         <button
           className="loginBtn"
@@ -100,7 +103,6 @@ const SignupForm: React.FC<Props> = ({ handleSignup, error }) => {
           Registrer deg
         </button>
       </div>
-      <p style={{ color: "red" }}>{error}</p>
 
       <Link to="/login">
         <button id="button-link">Login</button>
