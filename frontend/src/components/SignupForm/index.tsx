@@ -95,7 +95,7 @@ const SignupForm: React.FC<Props> = ({ handleSignup, error }) => {
               username: username,
               email: email,
               password: password,
-              is_organization: isOrganizationSignup,
+              is_organization: isOrganization,
             });
           }}
         >

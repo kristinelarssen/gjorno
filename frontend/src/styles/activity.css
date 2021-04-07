@@ -49,6 +49,7 @@
   border-width: 1px;
   height: 30px;
   width: 130px;
+  cursor: pointer;
 }
 
 #icon {

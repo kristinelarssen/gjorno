@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useState } from "react";
-import { Redirect, Route, Router, Switch } from "react-router-dom";
+import { Link, Redirect, Route, Router, Switch } from "react-router-dom";
 import "./App.css";
 import axios from "./axios";
 import LoginForm from "./components/LoginForm";
@@ -8,6 +8,7 @@ import history from "./history";
 import loginImage from "./images/login-image.png";
 import IUser from "./interfaces/user";
 import IUserLogin from "./interfaces/userlogin";
+import ActivityLog from "./pages/activityLog";
 import Home from "./pages/home";
 
 function App() {
@@ -128,7 +129,18 @@ function App() {
           </div>
         )}
         <div>
-          <img id="imgLogo" src={loginImage} alt="Logo"></img>
+          <Link to="/home">
+            <img id="imgLogo" src={loginImage} alt="Logo"></img>
+          </Link>
+        </div>
+        <div>
+          <Link
+            style={{ textDecoration: "none" }}
+            id="act-log-btn"
+            to="/activity-log"
+          >
+            Aktivitetslogg
+          </Link>
         </div>
       </div>
       <Router history={history}>
@@ -155,6 +167,7 @@ function App() {
               <Redirect to={"/signup"} />
             )}
           </Route>
+          <Route path={"/activity-log"} exact component={ActivityLog}></Route>
         </Switch>
       </Router>
     </div>
