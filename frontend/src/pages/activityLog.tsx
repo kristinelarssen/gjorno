@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { isTemplateTail } from "typescript";
 import axios from "../axios";
 import ActivityList from "../components/ActivityList";
@@ -49,9 +49,10 @@ function ActivityLog() {
 
   let activitiesToShow = activities;
   activitiesToShow = activities.filter((item) => {
+    console.log(item.participants);
     return (
       item.author?.user.username === currentUser?.user.username ||
-      item.author?.is_organization === false
+      item.participants?.find((p) => p.id === currentUser?.id)
     );
   });
 
