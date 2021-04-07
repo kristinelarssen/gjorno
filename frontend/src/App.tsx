@@ -133,15 +133,17 @@ function App() {
             <img id="imgLogo" src={loginImage} alt="Logo"></img>
           </Link>
         </div>
-        <div>
-          <Link
-            style={{ textDecoration: "none" }}
-            id="act-log-btn"
-            to="/activity-log"
-          >
-            Aktivitetslogg
-          </Link>
-        </div>
+        {isAuthenticated && (
+          <div>
+            <Link
+              style={{ textDecoration: "none" }}
+              id="act-log-btn"
+              to="/activity-log"
+            >
+              Aktivitetslogg
+            </Link>
+          </div>
+        )}
       </div>
       <Router history={history}>
         <Switch>
