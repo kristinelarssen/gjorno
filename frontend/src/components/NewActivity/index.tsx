@@ -36,7 +36,7 @@ const NewActivity: FC<Props> = ({ popup, handleSubmit, currentUser }) => {
     } else if (data.date < new Date()) {
       if (currentUser) {
         if (currentUser.is_organization) {
-          setError("Dato må være framover i tid.");
+          setError("Dato må være fram i tid.");
         } else {
           handleSubmit(data);
           popup();

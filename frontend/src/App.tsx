@@ -68,6 +68,7 @@ function App() {
     event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
     data: IUser
   ) => {
+    event.preventDefault();
     if (!data.username) {
       setErrorSU("Du må skrive inn et brukernavn.");
       return;
@@ -85,7 +86,6 @@ function App() {
       );
       return;
     }
-    event.preventDefault();
     const sendSignupRequest = async () => {
       try {
         await axios.post("users/", { ...data }).then((res) => {
