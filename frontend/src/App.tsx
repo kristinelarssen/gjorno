@@ -30,6 +30,7 @@ function App() {
     event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
     data: IUserLogin
   ) => {
+    event.preventDefault();
     if (!data.username) {
       setErrorLI("Du må skrive inn et brukernavn.");
       return;
@@ -37,7 +38,6 @@ function App() {
       setErrorLI("Du må skrive inn et passord.");
       return;
     }
-    event.preventDefault();
     const sendLoginRequest = async () => {
       try {
         await axios
