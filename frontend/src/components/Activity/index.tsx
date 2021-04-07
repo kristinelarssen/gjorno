@@ -98,16 +98,18 @@ const Activity: React.FC<Props> = ({
             {author?.user.username && `Opprettet av ${author.user.username}`}
           </p>
           <p>
-            {author?.is_organization &&
-              (!isParticipating ? (
-                <button className="activity-button" onClick={addParticipant}>
-                  {"Meld deg på"}
-                </button>
-              ) : (
-                "Påmeldt"
-              ))}
+            {author?.is_organization && !isParticipating && (
+              <button className="activity-button" onClick={addParticipant}>
+                {"Meld deg på"}
+              </button>
+            )}
+
             {isParticipating && (
-              <button className="activity-button" onClick={removeParticipant}>
+              <button
+                style={{ backgroundColor: "red" }}
+                className="activity-button"
+                onClick={removeParticipant}
+              >
                 {"Meld av"}
               </button>
             )}
@@ -128,17 +130,18 @@ const Activity: React.FC<Props> = ({
             {author?.user.username && `Opprettet av ${author.user.username}`}
           </p>
           <p>
-            {author?.is_organization &&
-              (!isParticipating ? (
-                <button className="activity-button" onClick={addParticipant}>
-                  {"Meld deg på"}
-                </button>
-              ) : (
-                "Påmeldt"
-              ))}
+            {author?.is_organization && !isParticipating && (
+              <button className="activity-button" onClick={addParticipant}>
+                {"Meld deg på"}
+              </button>
+            )}
 
             {isParticipating && (
-              <button className="activity-button" onClick={removeParticipant}>
+              <button
+                style={{ backgroundColor: "red" }}
+                className="activity-button"
+                onClick={removeParticipant}
+              >
                 {"Meld av"}
               </button>
             )}
@@ -159,17 +162,18 @@ const Activity: React.FC<Props> = ({
             {author?.user.username && `Opprettet av ${author.user.username}`}
           </p>
           <p>
-            {author?.is_organization &&
-              (!isParticipating ? (
-                <button className="activity-button" onClick={addParticipant}>
-                  {"Meld deg på"}
-                </button>
-              ) : (
-                "Påmeldt"
-              ))}
+            {author?.is_organization && !isParticipating && (
+              <button className="activity-button" onClick={addParticipant}>
+                {"Meld deg på"}
+              </button>
+            )}
 
             {isParticipating && (
-              <button className="activity-button" onClick={removeParticipant}>
+              <button
+                style={{ backgroundColor: "red" }}
+                className="activity-button"
+                onClick={removeParticipant}
+              >
                 {"Meld av"}
               </button>
             )}
@@ -190,17 +194,18 @@ const Activity: React.FC<Props> = ({
             {author?.user.username && `Opprettet av ${author.user.username}`}
           </p>
           <p>
-            {author?.is_organization &&
-              (!isParticipating ? (
-                <button className="activity-button" onClick={addParticipant}>
-                  {"Meld deg på"}
-                </button>
-              ) : (
-                "Påmeldt"
-              ))}
+            {author?.is_organization && !isParticipating && (
+              <button className="activity-button" onClick={addParticipant}>
+                {"Meld deg på"}
+              </button>
+            )}
 
             {isParticipating && (
-              <button className="activity-button" onClick={removeParticipant}>
+              <button
+                style={{ backgroundColor: "red" }}
+                className="activity-button"
+                onClick={removeParticipant}
+              >
                 {"Meld av"}
               </button>
             )}
