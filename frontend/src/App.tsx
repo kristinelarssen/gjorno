@@ -10,6 +10,8 @@ import IUser from "./interfaces/user";
 import IUserLogin from "./interfaces/userlogin";
 import ActivityLog from "./pages/activityLog";
 import Home from "./pages/home";
+import userImg from "./images/user.png";
+import orgImg from "./images/org.png";
 
 function App() {
   const [user, setUser] = useState<IUser>({
@@ -119,15 +121,32 @@ function App() {
         <h1 className="text">GjørNo'</h1>
 
         {isAuthenticated && (
-          <div id="user">
-            <p className="text" id="username">
-              Hello {user?.username}
-            </p>
-            <button id="btnLogOut" onClick={handleLogOut}>
-              Logg ut
-            </button>
-          </div>
+          <>
+            {user.is_organization === true && (
+              <>
+                <div>
+                  <p className="iconText">Organisasjon</p>
+                  <img className="imgIcon" src={orgImg} />
+                </div>
+              </>
+            )}
+            {user.is_organization === false && (
+              <>
+                <p className="iconText">Privatperson</p>
+                <img className="imgIcon" src={userImg} />
+              </>
+            )}
+            <div id="user">
+              <p className="text" id="username">
+                Hello {user?.username}
+              </p>
+              <button id="btnLogOut" onClick={handleLogOut}>
+                Logg ut
+              </button>
+            </div>
+          </>
         )}
+
         <div>
           <Link to="/home">
             <img id="imgLogo" src={loginImage} alt="Logo"></img>
