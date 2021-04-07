@@ -98,13 +98,13 @@ const Activity: React.FC<Props> = ({
             {author?.user.username && `Opprettet av ${author.user.username}`}
           </p>
           <p>
-            {author?.is_organization && !isParticipating && (
+            {!currentUser.is_organization && author?.is_organization && !isParticipating && (
               <button className="activity-button" onClick={addParticipant}>
                 {"Meld deg på"}
               </button>
             )}
 
-            {isParticipating && (
+            {!currentUser.is_organization && isParticipating && (
               <button
                 style={{ backgroundColor: "red" }}
                 className="activity-button"
@@ -130,13 +130,13 @@ const Activity: React.FC<Props> = ({
             {author?.user.username && `Opprettet av ${author.user.username}`}
           </p>
           <p>
-            {author?.is_organization && !isParticipating && (
+            {!currentUser.is_organization && author?.is_organization && !isParticipating && (
               <button className="activity-button" onClick={addParticipant}>
                 {"Meld deg på"}
               </button>
             )}
 
-            {isParticipating && (
+            {!currentUser.is_organization && isParticipating && (
               <button
                 style={{ backgroundColor: "red" }}
                 className="activity-button"
@@ -162,13 +162,13 @@ const Activity: React.FC<Props> = ({
             {author?.user.username && `Opprettet av ${author.user.username}`}
           </p>
           <p>
-            {author?.is_organization && !isParticipating && (
+            {!currentUser.is_organization && author?.is_organization && !isParticipating && (
               <button className="activity-button" onClick={addParticipant}>
                 {"Meld deg på"}
               </button>
             )}
 
-            {isParticipating && (
+            {!currentUser.is_organization && isParticipating && (
               <button
                 style={{ backgroundColor: "red" }}
                 className="activity-button"
@@ -194,13 +194,13 @@ const Activity: React.FC<Props> = ({
             {author?.user.username && `Opprettet av ${author.user.username}`}
           </p>
           <p>
-            {author?.is_organization && !isParticipating && (
+            {!currentUser.is_organization && author?.is_organization && !isParticipating && (
               <button className="activity-button" onClick={addParticipant}>
                 {"Meld deg på"}
               </button>
             )}
 
-            {isParticipating && (
+            {!currentUser.is_organization && isParticipating && (
               <button
                 style={{ backgroundColor: "red" }}
                 className="activity-button"
