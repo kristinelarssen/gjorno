@@ -1,8 +1,6 @@
-import React, { useEffect, useState, useContext } from "react";
-import { isTemplateTail } from "typescript";
+import React, { useEffect, useState } from "react";
 import axios from "../axios";
 import ActivityList from "../components/ActivityList";
-import NewActivity from "../components/NewActivity";
 import IActivity from "../interfaces/activity";
 import IAuthor from "../interfaces/author";
 import "./../App.css";
