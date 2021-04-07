@@ -23,12 +23,20 @@ function App() {
     localStorage.getItem("token") ? true : false
   );
 
-  const [error, setError] = useState("");
+  const [errorSignup, setErrorSU] = useState("");
+  const [errorLogIn, setErrorLI] = useState("");
 
   const handleLogin = (
     event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
     data: IUserLogin
   ) => {
+    if (!data.username) {
+      setErrorLI("Du må skrive inn et brukernavn.");
+      return;
+    } else if (!data.password) {
+      setErrorLI("Du må skrive inn et passord.");
+      return;
+    }
     event.preventDefault();
     const sendLoginRequest = async () => {
       try {
@@ -60,9 +68,20 @@ function App() {
     event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
     data: IUser
   ) => {
-    if (data?.password && !checkPassword(data.password)) {
-      setError(
-        "Password must contain minimum eight characters, both upper case and lower case letters and one number."
+    if (!data.username) {
+      setErrorSU("Du må skrive inn et brukernavn.");
+      return;
+    } else if (!data.email) {
+      setErrorSU(
+        "Du må skrive inn en email, og den må ha dette formatet: navn@mail.no"
+      );
+      return;
+    } else if (!data?.password) {
+      setErrorSU("Du må skrive inn et passord");
+      return;
+    } else if (data?.password && !checkPassword(data.password)) {
+      setErrorSU(
+        "Passordet må innholde minst 8 karakterer, både store og små bokstaver og minst et tall."
       );
       return;
     }
@@ -126,14 +145,14 @@ function App() {
               <>
                 <div>
                   <p className="iconText">Organisasjon</p>
-                  <img className="imgIcon" src={orgImg} />
+                  <img className="imgIcon" src={orgImg} alt="Bilde" />
                 </div>
               </>
             )}
             {user.is_organization === false && (
               <>
                 <p className="iconText">Privatperson</p>
-                <img className="imgIcon" src={userImg} />
+                <img className="imgIcon" src={userImg} alt="Bilde" />
               </>
             )}
             <div id="user">
@@ -171,14 +190,14 @@ function App() {
             {isAuthenticated ? (
               <Redirect to={"/home"} />
             ) : (
-              <LoginForm handleLogin={handleLogin} />
+              <LoginForm error={errorLogIn} handleLogin={handleLogin} />
             )}
           </Route>
           <Route path={"/signup"} exact>
             {isAuthenticated ? (
               <Redirect to={"/home"} />
             ) : (
-              <SignupForm error={error} handleSignup={handleSignup} />
+              <SignupForm error={errorSignup} handleSignup={handleSignup} />
             )}
           </Route>
           <Route path={"/"} exact>

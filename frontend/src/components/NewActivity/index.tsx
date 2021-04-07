@@ -1,17 +1,20 @@
 import React, { FC, useState } from "react";
 import IActivity from "../../interfaces/activity";
+import IAuthor from "../../interfaces/author";
 import "../../styles/newActivity.css";
 
 interface Props {
   popup: () => void;
   handleSubmit: (data: IActivity) => void;
+  currentUser?: IAuthor;
 }
 
-const NewActivity: FC<Props> = ({ popup, handleSubmit }) => {
+const NewActivity: FC<Props> = ({ popup, handleSubmit, currentUser }) => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [date, setDate] = useState("");
   const [genre, setGenre] = useState("");
+  const [error, setError] = useState("");
 
   const handleOnClick = () => {
     const data = {
@@ -21,8 +24,28 @@ const NewActivity: FC<Props> = ({ popup, handleSubmit }) => {
       date: new Date(date),
       genre: genre,
     };
-    handleSubmit(data);
-    popup();
+
+    if (!title) {
+      setError("Du må skrive inn en tittel.");
+    } else if (!data.description) {
+      setError("Du må skrive inn en beskrivelse.");
+    } else if (!data.genre) {
+      setError("Du må velge en sjanger.");
+    } else if (date === "") {
+      setError("Du må velge en dato.");
+    } else if (data.date < new Date()) {
+      if (currentUser) {
+        if (currentUser.is_organization) {
+          setError("Dato må være framover i tid.");
+        } else {
+          handleSubmit(data);
+          popup();
+        }
+      }
+    } else {
+      handleSubmit(data);
+      popup();
+    }
   };
 
   return (
@@ -81,6 +104,8 @@ const NewActivity: FC<Props> = ({ popup, handleSubmit }) => {
       <button className="btn" id="btnOk" onClick={handleOnClick}>
         OK
       </button>
+      <br></br>
+      <p id="error">{error}</p>
     </div>
   );
 };

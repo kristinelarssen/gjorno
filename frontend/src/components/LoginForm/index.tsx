@@ -9,9 +9,10 @@ interface Props {
     event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
     data: IUserLogin
   ) => void;
+  error: string;
 }
 
-const LoginForm: React.FC<Props> = ({ handleLogin }) => {
+const LoginForm: React.FC<Props> = ({ handleLogin, error }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
@@ -51,14 +52,13 @@ const LoginForm: React.FC<Props> = ({ handleLogin }) => {
               ></input>
             </div>
           </div>
-
+          <p id="error">{error}</p>
           <div className="footer">
             <button
-              type="submit"
               className="loginBtn"
-              onClick={(event) =>
-                handleLogin(event, { username: username, password: password })
-              }
+              onClick={(event) => {
+                handleLogin(event, { username: username, password: password });
+              }}
             >
               Logg inn
             </button>
