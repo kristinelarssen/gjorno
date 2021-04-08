@@ -73,25 +73,21 @@ function Home() {
 
   if (acfilter !== "Alle" && orgfilter === "Alle") {
     activitiesToShow = activities.filter((item) => item.genre === acfilter);
-    fetchData() 
   } else if (acfilter === "Alle" && orgfilter !== "Alle") {
     if (orgfilter === "Privatpersoner") {
       activitiesToShow = activities.filter(
         (item) => item.author?.is_organization === false
       );
-      fetchData() 
     }
     if (orgfilter === "Organisasjon") {
       activitiesToShow = activities.filter(
         (item) => item.author?.is_organization === true
       );
-      fetchData() 
     }
     if (orgfilter === "Mine") {
       activitiesToShow = activities.filter(
         (item) => item.author?.user.username === currentUser?.user.username
       );
-      fetchData() 
     }
   } else if (acfilter !== "Alle" && orgfilter !== "Alle") {
     if (orgfilter === "Privatpersoner") {
@@ -99,14 +95,12 @@ function Home() {
         (item) =>
           item.genre === acfilter && item.author?.is_organization === false
       );
-      fetchData() 
     }
     if (orgfilter === "Organisasjon") {
       activitiesToShow = activities.filter(
         (item) =>
           item.genre === acfilter && item.author?.is_organization === true
-      );
-      fetchData() 
+      ); 
     }
     if (orgfilter === "Mine") {
       activitiesToShow = activities.filter(
@@ -114,7 +108,6 @@ function Home() {
           item.genre === acfilter &&
           item.author?.user.username === currentUser?.user.username
       );
-      fetchData() 
     }
   }
 
