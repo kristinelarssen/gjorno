@@ -125,7 +125,7 @@ function Home() {
       </header>
       <div id="filter-container">
         <div id="filterbox">
-          <label>Hvilke type aktiviteter vil du se?</label>
+          <label>Hvilken typen aktiviteter vil du se?</label>
           <br />
           <select
             onChange={(event) => {
@@ -149,8 +149,8 @@ function Home() {
           >
             <option value="Alle">Alle</option>
             <option value="Privatpersoner">Privatpersoner</option>
-            <option value="Organisasjon">Organiserte aktivitetet</option>
-            <option value="Mine">Mine aktivitetet</option>
+            <option value="Organisasjon">Organiserte aktiviteter</option>
+            <option value="Mine">Mine aktiviteter</option>
           </select>
         </div>
       </div>
