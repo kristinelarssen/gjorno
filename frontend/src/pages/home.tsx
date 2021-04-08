@@ -73,21 +73,25 @@ function Home() {
 
   if (acfilter !== "Alle" && orgfilter === "Alle") {
     activitiesToShow = activities.filter((item) => item.genre === acfilter);
+    fetchData() 
   } else if (acfilter === "Alle" && orgfilter !== "Alle") {
     if (orgfilter === "Privatpersoner") {
       activitiesToShow = activities.filter(
         (item) => item.author?.is_organization === false
       );
+      fetchData() 
     }
     if (orgfilter === "Organisasjon") {
       activitiesToShow = activities.filter(
         (item) => item.author?.is_organization === true
       );
+      fetchData() 
     }
     if (orgfilter === "Mine") {
       activitiesToShow = activities.filter(
         (item) => item.author?.user.username === currentUser?.user.username
       );
+      fetchData() 
     }
   } else if (acfilter !== "Alle" && orgfilter !== "Alle") {
     if (orgfilter === "Privatpersoner") {
@@ -95,12 +99,14 @@ function Home() {
         (item) =>
           item.genre === acfilter && item.author?.is_organization === false
       );
+      fetchData() 
     }
     if (orgfilter === "Organisasjon") {
       activitiesToShow = activities.filter(
         (item) =>
           item.genre === acfilter && item.author?.is_organization === true
       );
+      fetchData() 
     }
     if (orgfilter === "Mine") {
       activitiesToShow = activities.filter(
@@ -108,6 +114,7 @@ function Home() {
           item.genre === acfilter &&
           item.author?.user.username === currentUser?.user.username
       );
+      fetchData() 
     }
   }
 
@@ -125,7 +132,7 @@ function Home() {
       </header>
       <div id="filter-container">
         <div id="filterbox">
-          <label>Hvilke type aktiviteter vil du se?</label>
+          <label>Hvilken typen aktiviteter vil du se?</label>
           <br />
           <select
             onChange={(event) => {
@@ -149,8 +156,8 @@ function Home() {
           >
             <option value="Alle">Alle</option>
             <option value="Privatpersoner">Privatpersoner</option>
-            <option value="Organisasjon">Organiserte aktivitetet</option>
-            <option value="Mine">Mine aktivitetet</option>
+            <option value="Organisasjon">Organiserte aktiviteter</option>
+            <option value="Mine">Mine aktiviteter</option>
           </select>
         </div>
       </div>
