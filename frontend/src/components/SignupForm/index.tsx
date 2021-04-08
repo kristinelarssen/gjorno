@@ -26,27 +26,6 @@ const SignupForm: React.FC<Props> = ({ handleSignup, error }) => {
           <img id="login-image" src={loginImage} alt="login" />
         </div>
         <div className="form">
-          <div id="float-container">
-            <div id="private" className="float-child">
-              <input
-                type="radio"
-                name="radiobutton"
-                value="private"
-                checked
-                onChange={(e) => setIsOrganization(false)}
-              ></input>
-              <label htmlFor="private">Privat person</label>
-            </div>
-            <div id="organization" className="float-child">
-              <input
-                type="radio"
-                name="radiobutton"
-                value="organization"
-                onChange={(e) => setIsOrganization(true)}
-              ></input>
-              <label htmlFor="organization">Organisasjon</label>
-            </div>
-          </div>
           <div className="form-group">
             <label htmlFor="username" className="loginLabel">
               Brukernavn
@@ -59,7 +38,6 @@ const SignupForm: React.FC<Props> = ({ handleSignup, error }) => {
               onChange={(event) => setUsername(event.target.value)}
             ></input>
           </div>
-
           <div className="form-group">
             <label htmlFor="email" className="loginLabel">
               E-post
@@ -80,9 +58,31 @@ const SignupForm: React.FC<Props> = ({ handleSignup, error }) => {
               className="loginInput"
               type="password"
               placeholder="Passord"
+              id="password"
               value={password}
               onChange={(event) => setPassword(event.target.value)}
             ></input>
+          </div>
+          <div id="float-container">
+            <div id="private" className="float-child">
+              <input
+                type="radio"
+                name="radiobutton"
+                value="private"
+                checked
+                onChange={(e) => setIsOrganization(false)}
+              ></input>
+              <label htmlFor="private">Privat person</label>
+            </div>
+            <div id="organization" className="float-child">
+              <input
+                type="radio"
+                name="radiobutton"
+                value="organization"
+                onChange={(e) => setIsOrganization(true)}
+              ></input>
+              <label htmlFor="organization">Organisasjon</label>
+            </div>
           </div>
         </div>
       </div>

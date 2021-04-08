@@ -169,6 +169,7 @@ function Home() {
               setPopup(!popup);
             }}
             handleSubmit={handleSubmit}
+            currentUser={currentUser}
           ></NewActivity>
         ) : null}
       </div>
