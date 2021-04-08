@@ -1,6 +1,6 @@
 .popUp {
   width: 40%;
-  height: 250px;
+  height: 280px;
   border-radius: 8px;
   background-color: #fdde35;
   padding: 20px;
@@ -57,7 +57,6 @@
   left: 10%;
   font-size: 20px;
 }
-
 
 .div {
   margin: 30px;

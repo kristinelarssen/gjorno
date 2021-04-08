@@ -105,6 +105,7 @@ const NewActivity: FC<Props> = ({ popup, handleSubmit, currentUser }) => {
         OK
       </button>
       <br></br>
+      <br></br>
       <p id="error">{error}</p>
     </div>
   );
