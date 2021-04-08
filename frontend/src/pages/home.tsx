@@ -132,7 +132,7 @@ function Home() {
       </header>
       <div id="filter-container">
         <div id="filterbox">
-          <label>Hvilken typen aktiviteter vil du se?</label>
+          <label>Hvilken type aktiviteter vil du se?</label>
           <br />
           <select
             onChange={(event) => {
